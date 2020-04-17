@@ -25,15 +25,15 @@
 # SUCH DAMAGE.
 #
 
-ALL=	cryptotest cryptokeytest cryptostats \
+ALL=	cryptotest cryptostats \
 	ubsecstats hifnstats ipsecstats safestats
 BINDIR=	/usr/local/bin
 
 all:	${ALL}
 
 # program to test asymmetric crypto functions
-cryptokeytest: cryptokeytest.c
-	${CC} -o cryptokeytest cryptokeytest.c -lcrypto
+#cryptokeytest: cryptokeytest.c
+#	${CC} -o cryptokeytest cryptokeytest.c -lcrypto
 
 # program to dump statistics kept by the core crypto code
 cryptostats: cryptostats.c
