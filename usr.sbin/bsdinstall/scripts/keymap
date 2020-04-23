@@ -53,18 +53,18 @@ f_include $BSDCFG_SHARE/sysrc.subr
 #
 # Strings that should be moved to an i18n file and loaded with f_include_lang()
 #
-hline_arrows_tab_enter="Press arrows, TAB or ENTER"
-msg_continue_with_keymap="Continue with %s keymap"
+hline_arrows_tab_enter="Prime le frecce, TAB o ENTER"
+msg_continue_with_keymap="Continua con la keymap %s"
 msg_default="default"
-msg_error="Error"
-msg_freebsd_installer="pfSense Installer"
+msg_error="Errore"
+msg_freebsd_installer="Installazione Firew4ll"
 msg_keymap_menu_text="The system console driver for pfSense defaults to standard \"US\"\nkeyboard map. Other keymaps can be chosen below."
-msg_keymap_selection="Keymap Selection"
+msg_keymap_selection="Seleziona Keymap"
 msg_ok="OK"
-msg_select="Select"
-msg_test_keymap="Test %s keymap"
-msg_test_the_currently_selected_keymap="Test the currently selected keymap"
-msg_test_the_keymap_by_typing="Test the keymap by typing letters, numbers, and symbols. Characters\nshould match labels on the keyboard keys. Press Enter to stop testing."
+msg_select="Seleziona"
+msg_test_keymap="Prova la keymap %s"
+msg_test_the_currently_selected_keymap="Prova la keymap selezionata"
+msg_test_the_keymap_by_typing="Prova la keymap scrivendo lettere, numeri e simboli. I caratteri\n devono corrispondere alle etichette sui tasti della tastiera. Premi Invio per interrompere il test."
 
 ############################################################ FUNCTIONS
 

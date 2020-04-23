@@ -71,10 +71,10 @@ main(void)
 	size_t span;
 	struct dpv_config *config;
 	struct dpv_file_node *dist = dists;
-	static char backtitle[] = "pfSense Installer";
-	static char title[] = "Archive Extraction";
-	static char aprompt[] = "\n  Overall Progress:";
-	static char pprompt[] = "Extracting distribution files...\n";
+	static char backtitle[] = "Installazione Firew4ll";
+	static char title[] = "Estraendo archivio";
+	static char aprompt[] = "\n  Percentuale completamento:";
+	static char pprompt[] = "Estraendo i file di distribuzione...\n";
 	struct sigaction act;
 	char error[PATH_MAX + 512];
 
@@ -138,9 +138,9 @@ main(void)
 	chrootdir = getenv("BSDINSTALL_CHROOT");
 	if (chrootdir != NULL && chdir(chrootdir) != 0) {
 		snprintf(error, sizeof(error),
-		    "Could not change to directory %s: %s\n",
+		    "Impossibile cambiare alla directory %s: %s\n",
 		    chrootdir, strerror(errno));
-		dialog_msgbox("Error", error, 0, 0, TRUE);
+		dialog_msgbox("Errore", error, 0, 0, TRUE);
 		end_dialog();
 		return (EXIT_FAILURE);
 	}
@@ -275,7 +275,7 @@ extract_files(struct dpv_file_node *file, int out __unused)
 		if ((archive = archive_read_new()) == NULL) {
 			snprintf(errormsg, sizeof(errormsg),
 			    "Error: %s\n", archive_error_string(NULL));
-			dialog_msgbox("Extract Error", errormsg, 0, 0, TRUE);
+			dialog_msgbox("Estrazione Errore", errormsg, 0, 0, TRUE);
 			dpv_abort = 1;
 			return (-1);
 		}

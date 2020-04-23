@@ -42,9 +42,9 @@ error() {
 	fi
 	test -n "$DISTDIR_IS_UNIONFS" && umount -f $BSDINSTALL_DISTDIR
 	test -f $PATH_FSTAB && bsdinstall umount
-	dialog --backtitle "pfSense Installer" --title "Abort" \
-	    --no-label "Exit" --yes-label "Restart" --yesno \
-	    "${msg}An installation step has been aborted. Would you like to restart the installation or exit the installer?" 0 0
+	dialog --backtitle "Installazione Firewall" --title "Cancellare" \
+	    --no-label "Uscita" --yes-label "Riavvia" --yesno \
+	    "${msg}Una fase dell'installazione è fallita. Vuoi riavviare l'installazione o uscire?" 0 0
 	if [ $? -ne 0 ]; then
 		exit 1
 	else
@@ -52,7 +52,7 @@ error() {
 	fi
 }
 
-hline_arrows_tab_enter="Press arrows, TAB or ENTER"
+hline_arrows_tab_enter="Premi le frecce, TAB o ENTER"
 msg_gpt_active_fix="Your hardware is known to have issues booting in CSM/Legacy/BIOS mode from GPT partitions that are not set active. Would you like the installer to apply this workaround for you?"
 msg_lenovo_fix="Your model of Lenovo is known to have a BIOS bug that prevents it booting from GPT partitions without UEFI. Would you like the installer to apply a workaround for you?"
 msg_no="NO"
@@ -152,9 +152,9 @@ if [ -f $BSDINSTALL_DISTDIR/MANIFEST ]; then
 	if [ -n "$DISTMENU" ]; then
 		exec 3>&1
 		EXTRA_DISTS=$( eval dialog \
-		    --backtitle \"pfSense Installer\" \
-		    --title \"Distribution Select\" --nocancel --separate-output \
-		    --checklist \"Choose optional system components to install:\" \
+		    --backtitle \"Installazione Firew4ll\" \
+		    --title \"Selezione Distribuzione\" --nocancel --separate-output \
+		    --checklist \"Scegli i componenti opzionali da installare:\" \
 		    0 0 0 $DISTMENU \
 		2>&1 1>&3 )
 		for dist in $EXTRA_DISTS; do
@@ -176,7 +176,7 @@ LOCAL_DISTRIBUTIONS=`echo $LOCAL_DISTRIBUTIONS`	# Trim white space
 FETCH_DISTRIBUTIONS=`echo $FETCH_DISTRIBUTIONS`	# Trim white space
 
 if [ -n "$FETCH_DISTRIBUTIONS" -a -n "$BSDINSTALL_CONFIGCURRENT" ]; then
-	dialog --backtitle "pfSense Installer" --title "Network Installation" --msgbox "Some installation files were not found on the boot volume. The next few screens will allow you to configure networking so that they can be downloaded from the Internet." 0 0
+	dialog --backtitle "Installazione Firew4ll" --title "Installazione via Network" --msgbox "Some installation files were not found on the boot volume. The next few screens will allow you to configure networking so that they can be downloaded from the Internet." 0 0
 	bsdinstall netconfig || error
 	NETCONFIG_DONE=yes
 fi
@@ -301,9 +301,9 @@ case $CURARCH in
 esac
 
 exec 3>&1
-PARTMODE=`echo $PMODES | xargs dialog --backtitle "pfSense Installer" \
-	--title "Partitioning" \
-	--menu "How would you like to partition your disk?" \
+PARTMODE=`echo $PMODES | xargs dialog --backtitle "Installazione Firew4ll" \
+	--title "Partizionando" \
+	--menu "Vorresti partizionare il tuo disco?" \
 	0 0 0 2>&1 1>&3` || exit 1
 exec 3>&-
 
@@ -446,18 +446,18 @@ trap true SIGINT	# This section is optional
 
 finalconfig() {
 	exec 3>&1
-	REVISIT=$(dialog --backtitle "pfSense Installer" \
-	    --title "Final Configuration" --no-cancel --menu \
-	    "Setup of your pfSense system is nearly complete. You can now modify your configuration choices. After this screen, you will have an opportunity to make more complex changes using a shell." 0 0 0 \
-		"Exit" "Apply configuration and exit installer" \
-		"Add User" "Add a user to the system" \
-		"Root Password" "Change root password" \
-		"Hostname" "Set system hostname" \
-		"Network" "Networking configuration" \
-		"Services" "Set daemons to run on startup" \
-		"System Hardening" "Set security options" \
-		"Time Zone" "Set system timezone" \
-		"Handbook" "Install pfSense Handbook (requires network)" 2>&1 1>&3)
+	REVISIT=$(dialog --backtitle "Installazione Firew4ll" \
+	    --title "Configurazione finale" --no-cancel --menu \
+	    "L'installazione di Firew4ll è quasi completata. Ora puoi modificare le tue scelte e la tua configurazione. Dopo questa finestra, After this screen, avrai l'opportunità di apportare modifiche più complesse usando una shell." 0 0 0 \
+		"Esci" "Applica la configurazione ed esci dall'installazione" \
+		"Aggiungi utente" "Aggiungi un utente al sistema" \
+		"Root Password" "Cambia la password di root" \
+		"Hostname" "Imposa hostname del sistema" \
+		"Rete" "Configurazione rete" \
+		"Servizi" "Imposta i servizi da far partire all'avvio" \
+		"System Hardening" "Imposta opzioni di sicurezza" \
+		"Fuso orario" "Imposta il fuso orario del sistema" \
+		"Manuale" "Installa il manuale di Firew4ll (Internet richiesto)" 2>&1 1>&3)
 	exec 3>&-
 
 	case "$REVISIT" in
@@ -527,20 +527,20 @@ if [ ! -z "$BSDINSTALL_FETCHDEST" ]; then
 	rm -rf "$BSDINSTALL_FETCHDEST"
 fi
 
-dialog --backtitle "pfSense Installer" --title "Manual Configuration" \
+dialog --backtitle "Installazione Firew4ll" --title "Configurazione Manuale" \
     --default-button no --yesno \
-   "The installation is now finished. Before exiting the installer, would you like to open a shell in the new system to make any final manual modifications?" 0 0
+   "L'installazione è completata. Prima di uscire, vuoi aprire una shell del nuovo sistema per delle modifiche finali?" 0 0
 if [ $? -eq 0 ]; then
 	clear
-	echo This shell is operating in a chroot in the new system. \
-	    When finished making configuration changes, type \"exit\".
+	echo Questa shell opera in chroot sul nuovo sistema. \
+	    Quando termini le configurazioni, digita \"exit\".
 	chroot "$BSDINSTALL_CHROOT" /bin/sh 2>&1
 fi
 
 bsdinstall entropy
 bsdinstall umount
 
-f_dprintf "Installation Completed at %s" "$( date )"
+f_dprintf "Installazione completata il %s" "$( date )"
 
 ################################################################################
 # END

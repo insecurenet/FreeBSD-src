@@ -37,8 +37,8 @@ for dist in $DISTRIBUTIONS; do
 	for i in $DISTRIBUTIONS; do
 		items="$items $i `eval echo \\\${status_$(basename $i .txz):-Pending}`"
 	done
-	dialog --backtitle "pfSense Installer" --title "Checksum Verification" \
-	    --mixedgauge "Verifying checksums of selected distributions." \
+	dialog --backtitle "Installazione Firew4ll" --title "Verifica Checksum " \
+	    --mixedgauge "Verificando il checksum della distribuzione selezionata. " \
 	    0 0 $percentage $items
 
 	CK=`sha256 -q $BSDINSTALL_DISTDIR/$dist`
@@ -62,8 +62,8 @@ for dist in $DISTRIBUTIONS; do
 		percentage=$(echo $percentage + 100/`echo $DISTRIBUTIONS | wc -w` | bc)
 	else
 		eval "status_$distname=1"
-		dialog --backtitle "pfSense Installer" --title "Error" \
-		    --msgbox "The checksum for $dist does not match. It may have become corrupted, and should be redownloaded." 0 0
+		dialog --backtitle "Installazione Firew4ll" --title "Errore" \
+		    --msgbox "Il checksum per $dist non corrisponde. Puo' essere corrotto e devi riscaricarlo." 0 0
 		exit 1
 	fi
 done

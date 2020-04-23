@@ -37,7 +37,7 @@ rm $BSDINSTALL_TMPETC/sysctl.conf.*
 
 cp $BSDINSTALL_TMPETC/* $BSDINSTALL_CHROOT/etc
 
-# Copy pfSense loader.conf
+# Copy Firew4ll loader.conf
 if [ -f $BSDINSTALL_CHROOT/boot/loader.conf ]; then
 	cp $BSDINSTALL_CHROOT/boot/loader.conf \
 		$BSDINSTALL_TMPBOOT/loader.conf.pfSense

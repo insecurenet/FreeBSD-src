@@ -89,7 +89,7 @@ main(int argc, const char **argv)
 
 	init_dialog(stdin, stdout);
 	if (!sade_mode)
-		dialog_vars.backtitle = __DECONST(char *, "pfSense Installer");
+		dialog_vars.backtitle = __DECONST(char *, "Installazione Firew4ll");
 	dialog_vars.item_help = TRUE;
 	nscroll = i = 0;
 
@@ -97,8 +97,8 @@ main(int argc, const char **argv)
 	signal(SIGINT, sigint_handler);
 
 	if (strcmp(progname, "autopart") == 0) { /* Guided */
-		prompt = "Please review the disk setup. When complete, press "
-		    "the Finish button.";
+		prompt = "Controlla la configurazione del disco. Quando finisci, premi "
+		    "il pulsante Finito.";
 		/* Experimental ZFS autopartition support */
 		if (argc > 1 && strcmp(argv[1], "zfs") == 0) {
 			part_wizard("zfs");
@@ -113,8 +113,8 @@ main(int argc, const char **argv)
 			return (error);
 		}
 	} else {
-		prompt = "Create partitions for pfSense. No changes will be "
-		    "made until you select Finish.";
+		prompt = "Crea partizione per Firew4ll. Nessun cambio sarà "
+		    "fatto prima di premere Finito.";
 	}
 
 	/* Show the part editor either immediately, or to confirm wizard */
@@ -126,9 +126,9 @@ main(int argc, const char **argv)
 		if (error == 0)
 			items = read_geom_mesh(&mesh, &nitems);
 		if (error || items == NULL) {
-			dialog_msgbox("Error", "No disks found. If you need to "
-			    "install a kernel driver, choose Shell at the "
-			    "installation menu.", 0, 0, TRUE);
+			dialog_msgbox("Errore", "Nessun disco trovato. Se devi "
+			    "installare un driver del kernel, scegli Shell dal "
+			    "menu installazione.", 0, 0, TRUE);
 			break;
 		}
 			
@@ -136,7 +136,7 @@ main(int argc, const char **argv)
 
 		if (i >= nitems)
 			i = nitems - 1;
-		op = diskeditor_show("Partition Editor", prompt,
+		op = diskeditor_show("Editor Partizione", prompt,
 		    items, nitems, &i, &nscroll);
 
 		switch (op) {
@@ -282,8 +282,8 @@ validate_setup(void)
 	}
 
 	if (root == NULL) {
-		dialog_msgbox("Error", "No root partition was found. "
-		    "The root pfSense partition must have a mountpoint of '/'.",
+		dialog_msgbox("Errore", "Nessuna partizione di root trovata. "
+		    "La partizione root di Firew4ll deve avere '/' come mountpoint.",
 		0, 0, TRUE);
 		return (FALSE);
 	}
@@ -294,12 +294,12 @@ validate_setup(void)
 	 */
 	if (root->newfs == NULL && !sade_mode) {
 		dialog_vars.defaultno = TRUE;
-		cancel = dialog_yesno("Warning", "The chosen root partition "
-		    "has a preexisting filesystem. If it contains an existing "
-		    "pfSense system, please update it "
-		    "instead of installing a new system on it. The partition "
-		    "can also be erased by pressing \"No\" and then deleting "
-		    "and recreating it. Are you sure you want to proceed?",
+		cancel = dialog_yesno("Attenzione", "La partizione root scelta "
+		    "ha un filesystem preesistente. Se contiene una precedente "
+		    "installazione di Firew4ll, aggiornala "
+		    "invece di installare un nuovo sistema. La partizione "
+		    "puo' essere cancellata premendo \"No\" e quindi puoi "
+		    "ricrearla. Sei sicuro di voler procedere?",
 		    0, 0);
 		dialog_vars.defaultno = FALSE;
 		if (cancel)

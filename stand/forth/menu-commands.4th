@@ -252,11 +252,11 @@ also menu-namespace also menu-command-helpers
 	s" set autoboot_delay=NO" evaluate
 
 	cr
-	." To get back to the menu, type `menu' and press ENTER" cr
-	." or type `boot' and press ENTER to start pfSense." cr
+	." Per ritornare al menu, scrivi `menu' e premi ENTER" cr
+	." o scrivi `boot' e premi ENTER per far partire Firew4ll." cr
 	cr
 
-	FALSE \ exit the menu
+	FALSE \ esci dal menu
 ;
 
 \ 

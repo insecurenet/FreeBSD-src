@@ -69,7 +69,7 @@ main(void)
 	}
 
 	init_dialog(stdin, stdout);
-	dialog_vars.backtitle = __DECONST(char *, "pfSense Installer");
+	dialog_vars.backtitle = __DECONST(char *, "Installazione Firew4ll");
 	dlg_put_backtitle();
 
 	for (i = 0; i < ndists; i++) {
@@ -129,10 +129,10 @@ fetch_files(int nfiles, char **urls)
 			items[i*2]++;
 		else
 			items[i*2] = urls[i];
-		items[i*2 + 1] = "Pending";
+		items[i*2 + 1] = "In attesa";
 	}
 
-	dialog_msgbox("", "Connecting to server.\nPlease wait...", 0, 0, FALSE);
+	dialog_msgbox("", "Connettendo al server.\nAspettare...", 0, 0, FALSE);
 
 	/* Try to stat all the files */
 	total_bytes = 0;
@@ -159,7 +159,7 @@ fetch_files(int nfiles, char **urls)
 			continue;
 		}
 
-		items[i*2 + 1] = "In Progress";
+		items[i*2 + 1] = "In corso";
 		fsize = 0;
 		file_out = fopen(items[i*2], "w+");
 		if (file_out == NULL) {
@@ -208,11 +208,11 @@ fetch_files(int nfiles, char **urls)
 				snprintf(errormsg, sizeof(errormsg),
 				    "Error while fetching %s: %s\n",
 				    urls[i], fetchLastErrString);
-			items[i*2 + 1] = "Failed";
+			items[i*2 + 1] = "Fallito";
 			dialog_msgbox("Fetch Error", errormsg, 0, 0,
 				    TRUE);
 		} else {
-			items[i*2 + 1] = "Done";
+			items[i*2 + 1] = "Fatto";
 			nsuccess++;
 		}
 

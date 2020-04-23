@@ -166,8 +166,8 @@ boot_disk(struct gmesh *mesh)
 	}
 
 	if (n > 1) {
-		err = dlg_menu("Partitioning",
-		    "Select the disk on which to install pfSense.", 0, 0, 0,
+		err = dlg_menu("Partizionando",
+		    "Seleziona il disco dove installerai Firew4ll.", 0, 0, 0,
 		    n, disks, &selected, NULL);
 
 		chosen = (err == 0) ? strdup(disks[selected].name) : NULL;
@@ -248,11 +248,11 @@ query:
 	if (gpart != NULL)
 		dialog_vars.defaultno = TRUE;
 
-	snprintf(message, sizeof(message), "Would you like to use this entire "
-	    "disk (%s) for pfSense or partition it to share it with other "
-	    "operating systems? Using the entire disk will erase any data "
-	    "currently stored there.", disk);
-	choice = dialog_yesno("Partition", message, 0, 0);
+	snprintf(message, sizeof(message), "Vuoi usare l'interp"
+	    "disco (%s) per Firew4ll o partizionarlo e usarlo con altri "
+	    "sistemi operativi? Usando l'intero disco cancellerai tutti i dati "
+	    "attualmente contenuti in esso.", disk);
+	choice = dialog_yesno("Partiziona", message, 0, 0);
 
 	dialog_vars.yes_label = NULL;
 	dialog_vars.no_label = NULL;
@@ -262,10 +262,10 @@ query:
 		char warning[512];
 		int subchoice;
 
-		sprintf(warning, "The existing partition scheme on this "
-		    "disk (%s) is not bootable on this platform. To install "
-		    "pfSense, it must be repartitioned. This will destroy all "
-		    "data on the disk. Are you sure you want to proceed?",
+		sprintf(warning, "Lo schema di partizionamento di questo "
+		    "disco (%s) non è avviabile su questa piattaforma. Per installare "
+		    "Firew4ll, deve essere ripartizionato. Questo distruggerà tutti i "
+		    "dati sul disco. Sei sicuro di voler procedere?",
 		    scheme);
 		subchoice = dialog_yesno("Non-bootable Disk", warning, 0, 0);
 		if (subchoice != 0)
@@ -347,14 +347,14 @@ wizard_makeparts(struct gmesh *mesh, const char *disk, const char *fstype,
 		    HN_DECIMAL);
 		humanize_number(neededstr, 7, MIN_FREE_SPACE, "B", HN_AUTOSCALE,
 		    HN_DECIMAL);
-		sprintf(message, "There is not enough free space on %s to "
-		    "install pfSense (%s free, %s required). Would you like "
-		    "to choose another disk or to open the partition editor?",
+		sprintf(message, "Non c'è abbastanza spazio su %s per "
+		    "installare Firew4ll (%s libero, %s richiesto). Vorresti "
+		    "scegliere un altro disco e aprire l'editor di partizionamento?",
 		    disk, availablestr, neededstr);
 
-		dialog_vars.yes_label = "Another Disk";
+		dialog_vars.yes_label = "Altro disco;
 		dialog_vars.no_label = "Editor";
-		retval = dialog_yesno("Warning", message, 0, 0);
+		retval = dialog_yesno("Attenzione", message, 0, 0);
 		dialog_vars.yes_label = NULL;
 		dialog_vars.no_label = NULL;
 
