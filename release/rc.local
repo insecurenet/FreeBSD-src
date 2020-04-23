@@ -119,7 +119,7 @@ IMODE=`echo ${IOPTS} | xargs dialog --backtitle "Installazione Firew4ll" \
 exec 3>&-
 
 case "$IMODE" in
-"Install")	# Install
+"Installa")	# Install
 	# If not netbooting, have the installer configure the network
 	dlv=`/sbin/sysctl -n vfs.nfs.diskless_valid 2> /dev/null`
 	if [ ${dlv:=0} -eq 0 -a ! -f /etc/diskless ]; then
