@@ -602,7 +602,7 @@ also menu-infrastructure definitions
 			\ Optionally add a reboot option to the menu
 			s" menu_reboot" getenv -1 <> if
 				drop
-				s" Reboot" printmenuitem menureboot !
+				s" Riavvia" printmenuitem menureboot !
 				true menurebootadded !
 			then
 
@@ -691,7 +691,7 @@ also menu-infrastructure definitions
 	dup 9 > if drop 9 then
 	dup 0 < if drop 0 then
 
-	s" Autoboot in N seconds. [Space] to pause" ( n -- n c-addr/u )
+	s" Autoboot in N secondi. [Space] per pausa" ( n -- n c-addr/u )
 
 	2 pick 0> if
 		rot 48 + -rot ( n c-addr/u -- n' c-addr/u ) \ convert to ASCII

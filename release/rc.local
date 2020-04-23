@@ -65,8 +65,8 @@ else
 	echo
 	echo "Benvenuti in Firew4ll!"
 	echo
-	echo "Please choose the appropriate terminal type for your system."
-	echo "Common console types are:"
+	echo "Scegli la tipologia di terminale adatta al tuo sistema."
+	echo "Tipologia comuni di conosole sono:"
 	echo "   ansi     Standard ANSI terminal"
 	echo "   vt100    VT100 or compatible terminal"
 	echo "   xterm    xterm terminal emulator (or compatible)"
@@ -105,10 +105,10 @@ fi
 
 IOPTS="\
 \"Installa\" \"Installa Firew4ll\" \
-\"Rescue Shell\" \"Lancia a shell for riparere installazione\""
+\"Rescue Shell\" \"Lancia una shell per ripristinare l'installazione\""
 
 if [ -x /root/recover_configxml.sh ] ; then
-	IOPTS="${IOPTS} \"Ripristina config.xml\" \"Ripristina config.xml da una precedente installazione\""
+	IOPTS="${IOPTS} \"Ripristina config.xml\" \"Ripristina config.xml da installazione precedente\""
 fi
 
 exec 3>&1
