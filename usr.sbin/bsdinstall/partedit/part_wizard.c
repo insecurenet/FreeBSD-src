@@ -352,7 +352,7 @@ wizard_makeparts(struct gmesh *mesh, const char *disk, const char *fstype,
 		    "scegliere un altro disco e aprire l'editor di partizionamento?",
 		    disk, availablestr, neededstr);
 
-		dialog_vars.yes_label = "Altro disco;
+		dialog_vars.yes_label = "Altro disco";
 		dialog_vars.no_label = "Editor";
 		retval = dialog_yesno("Attenzione", message, 0, 0);
 		dialog_vars.yes_label = NULL;
