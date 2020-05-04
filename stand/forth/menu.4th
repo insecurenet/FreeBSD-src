@@ -613,7 +613,7 @@ also menu-infrastructure definitions
 			s" menu_optionstext" getenv dup -1 <> if
 				type
 			else
-				drop ." Options:"
+				drop ." Opzioni:"
 			then
 		then
 

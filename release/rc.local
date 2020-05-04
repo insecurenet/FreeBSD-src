@@ -99,6 +99,7 @@ if [ ! -f /tmp/buildroom ]; then
 	dialog --backtitle "Installazione Firew4ll" \
 		--title "Copyright e riferimenti distribuzione" \
 		--ok-label "Accetto" \
+		--cancel-label "Annulla" \
 		--msgbox "${msg}" 0 0 2>&1 1>&3
 	exec 3>&-
 fi

@@ -461,7 +461,7 @@ finalconfig() {
 	exec 3>&-
 
 	case "$REVISIT" in
-	"Add User")
+	"Aggiungi utente")
 		bsdinstall adduser
 		finalconfig
 		;;
@@ -473,11 +473,11 @@ finalconfig() {
 		bsdinstall hostname
 		finalconfig
 		;;
-	"Network")
+	"Rete")
 		bsdinstall netconfig
 		finalconfig
 		;;
-	"Services")
+	"Servizi")
 		bsdinstall services
 		finalconfig
 		;;
@@ -485,11 +485,11 @@ finalconfig() {
 		bsdinstall hardening
 		finalconfig
 		;;
-	"Time Zone")
+	"Fuso Orario")
 		bsdinstall time
 		finalconfig
 		;;
-	"Handbook")
+	"Manuale")
 		bsdinstall docsinstall
 		finalconfig
 		;;
@@ -500,7 +500,7 @@ finalconfig() {
 #finalconfig
 
 trap error SIGINT	# SIGINT is bad again
-bsdinstall config  || error "Failed to save config"
+bsdinstall config  || error "Salvataggio configurazione fallito"
 bsdinstall copy_configxml_from_usb
 
 # If the user recovered a config.xml from an existing disk or provided one on
