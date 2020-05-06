@@ -115,7 +115,6 @@ exec 3>&1
 IMODE=`echo ${IOPTS} | xargs dialog --backtitle "Installazione Firew4ll" \
 	--title "Benvenuti" \
 	--menu "Benvenuti in Firew4ll!" \
-	--cancel-label "Annulla" \
 	0 0 0 2>&1 1>&3` || exit 1
 exec 3>&-
 
