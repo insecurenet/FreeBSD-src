@@ -1,5 +1,6 @@
 #!/bin/sh
 #-
+# Copyright (c) 2020 Francesco Pellegrino - Insecurenet SRL - Translation Italian
 # Copyright (c) 2011 Nathan Whitehorn
 # Copyright (c) 2013-2015 Devin Teske
 # All rights reserved.
@@ -58,7 +59,7 @@ msg_continue_with_keymap="Continua con la keymap %s"
 msg_default="default"
 msg_error="Errore"
 msg_freebsd_installer="Installazione Firew4ll"
-msg_keymap_menu_text="The system console driver for pfSense defaults to standard \"US\"\nkeyboard map. Other keymaps can be chosen below."
+msg_keymap_menu_text="Firew4ll utilizza il keymap di default \"US\"\. Altre keymap possono essere scelte di seguito."
 msg_keymap_selection="Seleziona Keymap"
 msg_ok="OK"
 msg_select="Seleziona"

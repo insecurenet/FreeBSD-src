@@ -1,5 +1,6 @@
 #!/bin/sh
 #-
+# Copyright (c) 2020 Francesco Pellegrino - Insecurenet SRL - Translation Italian
 # Copyright (c) 2011 Nathan Whitehorn
 # Copyright (c) 2013 Devin Teske
 # All rights reserved.
@@ -293,9 +294,9 @@ if f_interactive; then
 fi
 
 PMODES="\
-\"Auto (UFS)\" \"Guided Disk Setup\" \
-Manual \"Manual Disk Setup (experts)\" \
-Shell \"Open a shell and partition by hand\""
+\"Auto (UFS)\" \"Configurazione guidata disco\" \
+Manuale \"Configurazione Manuale (esperto)\" \
+Shell \"Apri una shell e configura a mano\""
 
 CURARCH=$( uname -m )
 case $CURARCH in
@@ -316,36 +317,36 @@ exec 3>&-
 case "$PARTMODE" in
 "Auto (UFS)")	# Guided
 	if [ -e /dev/mirror/pfSenseMirror ]; then
-		bsdinstall scriptedpart mirror/pfSenseMirror || error "Partitioning error"
+		bsdinstall scriptedpart mirror/pfSenseMirror || error "Errore partizionamento"
 	elif [ -n "${target_disk}" ]; then
-		bsdinstall scriptedpart "${target_disk}" || error "Partitioning error"
+		bsdinstall scriptedpart "${target_disk}" || error "Errore partizionamento"
 	else
-		bsdinstall autopart || error "Partitioning error"
+		bsdinstall autopart || error "Errore partizionamento"
 	fi
-	bsdinstall fix_fstab || error "Failed to set partition labels"
-	bsdinstall mount || error "Failed to mount filesystem"
+	bsdinstall fix_fstab || error "Impossibile impostare le etichette delle partizioni"
+	bsdinstall mount || error "Impossibile montare il filesystem"
 	;;
 "Shell")	# Shell
 	clear
-	echo "Use this shell to set up partitions for the new system. When finished, mount the system at $BSDINSTALL_CHROOT and place an fstab file for the new system at $PATH_FSTAB. Then type 'exit'. You can also enter the partition editor at any time by entering 'bsdinstall partedit'."
+	echo "Utilizzare questa shell per impostare le partizioni per il nuovo sistema. Al termine, montare il sistema su $BSDINSTALL_CHROOT e posizionare un file fstab per il nuovo sistema in $PATH_FSTAB. Quindi digitare "exit". Puoi anche accedere all'editor delle partizioni in qualsiasi momento scrivendo 'bsdinstall partedit'."
 	sh 2>&1
 	;;
-"Manual")	# Manual
+"Manuale")	# Manual
 	if f_isset debugFile; then
 		# Give partedit the path to our logfile so it can append
-		BSDINSTALL_LOG="${debugFile#+}" bsdinstall partedit || error "Partitioning error"
+		BSDINSTALL_LOG="${debugFile#+}" bsdinstall partedit || error "Errore partizionamento"
 	else
-		bsdinstall partedit || error "Partitioning error"
+		bsdinstall partedit || error "Errore partizionamento"
 	fi
-	bsdinstall fix_fstab || error "Failed to set partition labels"
-	bsdinstall mount || error "Failed to mount filesystem"
+	bsdinstall fix_fstab || error "Impossibile impostare le etichette delle partizioni"
+	bsdinstall mount || error "Impossibile montare il filesystem"
 	;;
 "Auto (ZFS)")	# ZFS
-	bsdinstall zfsboot || error "ZFS setup failed"
-	bsdinstall mount || error "Failed to mount filesystem"
+	bsdinstall zfsboot || error "Configurazione ZFS fallita"
+	bsdinstall mount || error "Impossibile montare il filesystem"
 	;;
 *)
-	error "Unknown partitioning mode"
+	error "Modo di partizione sconosciuto"
 	;;
 esac
 
@@ -356,7 +357,7 @@ if [ ! -z "$FETCH_DISTRIBUTIONS" ]; then
 
 	# Download to a directory in the new system as scratch space
 	BSDINSTALL_FETCHDEST="$BSDINSTALL_CHROOT/usr/freebsd-dist"
-	mkdir -p "$BSDINSTALL_FETCHDEST" || error "Could not create directory $BSDINSTALL_FETCHDEST"
+	mkdir -p "$BSDINSTALL_FETCHDEST" || error "Impossibile creare la directory $BSDINSTALL_FETCHDEST"
 
 	export DISTRIBUTIONS="$FETCH_DISTRIBUTIONS"
 	# Try to use any existing distfiles
@@ -394,13 +395,13 @@ if [ ! -z "$FETCH_DISTRIBUTIONS" ]; then
 		# deselecting the debugging distributions, and retrying the
 		# installation, since failure to fetch *-dbg.txz should not
 		# be considered a fatal installation error.
-		msg="Failed to fetch remote distribution"
+		msg="Impossibile recuperare la distribuzione remota"
 		if [ ! -z "$WANT_DEBUG" ]; then
 			# Trim leading and trailing newlines.
 			DEBUG_LIST="${DEBUG_LIST%%\n}"
 			DEBUG_LIST="${DEBUG_LIST##\n}"
-			msg="$msg\n\nPlease deselect the following distributions"
-			msg="$msg and retry the installation:"
+			msg="$msg\n\nDeseleziona le seguenti distribuzioni"
+			msg="$msg e riprova l'installazione:"
 			msg="$msg\n$DEBUG_LIST"
 		fi
 		error "$msg"
@@ -411,7 +412,7 @@ fi
 if [ ! -z "$LOCAL_DISTRIBUTIONS" ]; then
 	# Download to a directory in the new system as scratch space
 	BSDINSTALL_FETCHDEST="$BSDINSTALL_CHROOT/usr/freebsd-dist"
-	mkdir -p "$BSDINSTALL_FETCHDEST" || error "Could not create directory $BSDINSTALL_FETCHDEST"
+	mkdir -p "$BSDINSTALL_FETCHDEST" || error "Impossibile creare la directory $BSDINSTALL_FETCHDEST"
 	# Try to use any existing distfiles
 	if [ -d $BSDINSTALL_DISTDIR ]; then
 		DISTDIR_IS_UNIONFS=1
@@ -422,11 +423,11 @@ if [ ! -z "$LOCAL_DISTRIBUTIONS" ]; then
 	env DISTRIBUTIONS="$LOCAL_DISTRIBUTIONS" \
 		BSDINSTALL_DISTSITE="file:///usr/freebsd-dist" \
 		bsdinstall distfetch || \
-		error "Failed to fetch distribution from local media"
+		error "Impossibile recuperare la distribuzione dal supporto locale"
 fi
 
-bsdinstall checksum || error "Distribution checksum failed"
-bsdinstall distextract || error "Distribution extract failed"
+bsdinstall checksum || error "Checksum di distribuzione non riuscito"
+bsdinstall distextract || error "Estrazione distribuzione fallita"
 
 if [ -n "${mounted_nullfs}" ]; then
 	umount $BSDINSTALL_DISTDIR
@@ -434,7 +435,7 @@ fi
 
 if [ -f /root/factory.sh ]; then
 	sh -x /root/factory.sh 2>/tmp/factory.debug \
-	    || error "System configuration failed"
+	    || error "Configurazione sistema fallita"
 fi
 #bsdinstall rootpass || error "Could not set root password"
 
