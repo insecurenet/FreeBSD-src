@@ -177,16 +177,16 @@ main(int argc, const char **argv)
 
 		error = 0;
 		if (op == 5) { /* Finished */
-			dialog_vars.ok_label = __DECONST(char *, "Commit");
+			dialog_vars.ok_label = __DECONST(char *, "Conferma");
 			dialog_vars.extra_label =
-			    __DECONST(char *, "Revert & Exit");
+			    __DECONST(char *, "Ripristina & Esci");
 			dialog_vars.extra_button = TRUE;
-			dialog_vars.cancel_label = __DECONST(char *, "Back");
-			op = dialog_yesno("Confirmation", "Your changes will "
-			    "now be written to disk. If you have chosen to "
-			    "overwrite existing data, it will be PERMANENTLY "
-			    "ERASED. Are you sure you want to commit your "
-			    "changes?", 0, 0);
+			dialog_vars.cancel_label = __DECONST(char *, "Indietro");
+			op = dialog_yesno("Conferma", "I cambiamenti "
+			    "saranno scritti sul disco. Se hai scelto di "
+			    "sovrascrivere dati esistenti, saranno DEFINITIVAMENTE "
+			    "CANCELLATI. Sei sicuro di voler confermare i tuoi "
+			    "cambiamenti?", 0, 0);
 			dialog_vars.ok_label = NULL;
 			dialog_vars.extra_button = FALSE;
 			dialog_vars.cancel_label = NULL;
@@ -325,23 +325,23 @@ apply_changes(struct gmesh *mesh)
 			nitems++;
 	}
 	items = calloc(nitems * 2, sizeof(const char *));
-	items[0] = "Writing partition tables";
+	items[0] = "Scrivendo tabella partizioni";
 	items[1] = "7"; /* In progress */
 	i = 1;
 	TAILQ_FOREACH(md, &part_metadata, metadata) {
 		if (md->newfs != NULL) {
 			char *item;
 			item = malloc(255);
-			sprintf(item, "Initializing %s", md->name);
+			sprintf(item, "Inizializzando %s", md->name);
 			items[i*2] = item;
-			items[i*2 + 1] = "Pending";
+			items[i*2 + 1] = "Aspettando";
 			i++;
 		}
 	}
 
 	i = 0;
-	dialog_mixedgauge("Initializing",
-	    "Initializing file systems. Please wait.", 0, 0, i*100/nitems,
+	dialog_mixedgauge("Inizializzando",
+	    "Inizializzando file systems. Attendere prego.", 0, 0, i*100/nitems,
 	    nitems, __DECONST(char **, items));
 	gpart_commit(mesh);
 	items[i*2 + 1] = "3";
@@ -353,8 +353,8 @@ apply_changes(struct gmesh *mesh)
 	TAILQ_FOREACH(md, &part_metadata, metadata) {
 		if (md->newfs != NULL) {
 			items[i*2 + 1] = "7"; /* In progress */
-			dialog_mixedgauge("Initializing",
-			    "Initializing file systems. Please wait.", 0, 0,
+			dialog_mixedgauge("Inizializzando",
+			    "Inizializzando file systems. Attendere prego.", 0, 0,
 			    i*100/nitems, nitems, __DECONST(char **, items));
 			sprintf(message, "(echo %s; %s) >>%s 2>>%s",
 			    md->newfs, md->newfs, getenv("BSDINSTALL_LOG"),
@@ -364,8 +364,8 @@ apply_changes(struct gmesh *mesh)
 			i++;
 		}
 	}
-	dialog_mixedgauge("Initializing",
-	    "Initializing file systems. Please wait.", 0, 0,
+	dialog_mixedgauge("Inizializzando",
+	    "Inizializzando file systems. Attendere prego.", 0, 0,
 	    i*100/nitems, nitems, __DECONST(char **, items));
 
 	for (i = 1; i < nitems; i++)
@@ -378,9 +378,9 @@ apply_changes(struct gmesh *mesh)
 		fstab_path = "/etc/fstab";
 	fstab = fopen(fstab_path, "w+");
 	if (fstab == NULL) {
-		sprintf(message, "Cannot open fstab file %s for writing (%s)\n",
+		sprintf(message, "Impossibile aprire il file fstab %s per scrivere (%s)\n",
 		    getenv("PATH_FSTAB"), strerror(errno));
-		dialog_msgbox("Error", message, 0, 0, TRUE);
+		dialog_msgbox("Errore", message, 0, 0, TRUE);
 		return (-1);
 	}
 	fprintf(fstab, "# Device\tMountpoint\tFStype\tOptions\tDump\tPass#\n");
@@ -410,7 +410,7 @@ apply_workaround(struct gmesh *mesh)
 	}
 
 	if (strcmp(classp->lg_name, "PART") != 0) {
-		dialog_msgbox("Error", "gpart not found!", 0, 0, TRUE);
+		dialog_msgbox("Errore", "gpart non trovato!", 0, 0, TRUE);
 		return;
 	}
 
@@ -418,7 +418,7 @@ apply_workaround(struct gmesh *mesh)
 		LIST_FOREACH(gc, &gp->lg_config, lg_config) {
 			if (strcmp(gc->lg_name, "scheme") == 0) {
 				scheme = gc->lg_val;
-			} else if (strcmp(gc->lg_name, "modified") == 0) {
+			} else if (strcmp(gc->lg_name, "modificato") == 0) {
 				modified = gc->lg_val;
 			}
 		}
@@ -480,7 +480,7 @@ add_geom_children(struct ggeom *gp, int recurse, struct partedit_item **items,
 		return;
 
 	LIST_FOREACH(pp, &gp->lg_provider, lg_provider) {
-		if (strcmp(gp->lg_class->lg_name, "LABEL") == 0)
+		if (strcmp(gp->lg_class->lg_name, "ETICHETTA") == 0)
 			continue;
 
 		/* Skip WORM media */
