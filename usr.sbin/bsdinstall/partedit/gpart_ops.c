@@ -241,11 +241,11 @@ parttypemenu:
 
 	if (!is_scheme_bootable(items[choice].name)) {
 		char message[512];
-		sprintf(message, "This partition scheme (%s) is not "
-		    "bootable on this platform. Are you sure you want "
-		    "to proceed?", items[choice].name);
+		sprintf(message, "Questo schema di partizione (%s) non è "
+		    "avviabile su questa piattaforma. Sei sicuro di voler "
+		    "procedere?", items[choice].name);
 		dialog_vars.defaultno = TRUE;
-		cancel = dialog_yesno("Warning", message, 0, 0);
+		cancel = dialog_yesno("AVVISO", message, 0, 0);
 		dialog_vars.defaultno = FALSE;
 		if (cancel) /* cancel */
 			goto parttypemenu;
@@ -272,11 +272,11 @@ schememenu:
 
 		if (!is_scheme_bootable(scheme)) {
 			char message[512];
-			sprintf(message, "This partition scheme (%s) is not "
-			    "bootable on this platform. Are you sure you want "
-			    "to proceed?", scheme);
+			sprintf(message, "Questo schema di partizione (%s) non è "
+		    "avviabile su questa piattaforma. Sei sicuro di voler "
+		    "procedere?", scheme);
 			dialog_vars.defaultno = TRUE;
-			cancel = dialog_yesno("Warning", message, 0, 0);
+			cancel = dialog_yesno("AVVISO", message, 0, 0);
 			dialog_vars.defaultno = FALSE;
 			if (cancel) { /* cancel */
 				/* Reset scheme so user can choose another */
@@ -295,7 +295,7 @@ schememenu:
 
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') {
-		gpart_show_error("Error", NULL, errstr);
+		gpart_show_error("Errore", NULL, errstr);
 		gctl_free(r);
 		scheme = NULL;
 		goto schememenu;
@@ -349,7 +349,7 @@ gpart_activate(struct gprovider *pp)
 
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') 
-		gpart_show_error("Error", "Error marking partition active:",
+		gpart_show_error("Errore", "Errore contrassegno partizione attiva:",
 		    errstr);
 	gctl_free(r);
 }
@@ -369,7 +369,7 @@ gpart_set_root(const char *lg_name, const char *attribute)
 
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') 
-		gpart_show_error("Error", "Error setting parameter on disk:",
+		gpart_show_error("Errore", "Errore impostazioni parametri disco:",
 		    errstr);
 	gctl_free(r);
 }
@@ -458,9 +458,9 @@ gpart_partcode(struct gprovider *pp, const char *fstype)
 	sprintf(command, "gpart bootcode -p %s -i %s %s",
 	    partcode_path(scheme, fstype), indexstr, pp->lg_geom->lg_name);
 	if (system(command) != 0) {
-		sprintf(message, "Error installing partcode on partition %s",
+		sprintf(message, "Errore installazione partcode sulla partizione %s",
 		    pp->lg_name);
-		dialog_msgbox("Error", message, 0, 0, TRUE);
+		dialog_msgbox("Errore", message, 0, 0, TRUE);
 	}
 }
 
@@ -490,7 +490,7 @@ gpart_destroy(struct ggeom *lg_geom)
 	gctl_ro_param(r, "arg0", -1, lg_geom->lg_name);
 	gctl_ro_param(r, "flags", -1, GPART_FLAGS);
 	gctl_ro_param(r, "force", sizeof(force), &force);
-	gctl_ro_param(r, "verb", -1, "destroy");
+	gctl_ro_param(r, "verb", -1, "distruggi");
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') {
 		/*
@@ -498,7 +498,7 @@ gpart_destroy(struct ggeom *lg_geom)
 		 * altogether. Show all other errors to the user.
 		 */
 		if (strtol(errstr, NULL, 0) != EINVAL)
-			gpart_show_error("Error", NULL, errstr);
+			gpart_show_error("Errore", NULL, errstr);
 	}
 	gctl_free(r);
 
@@ -522,17 +522,17 @@ gpart_edit(struct gprovider *pp)
 	unsigned i;
 
 	DIALOG_FORMITEM items[] = {
-		{0, "Type:", 5, 0, 0, FALSE, "", 11, 0, 12, 15, 0,
-		    FALSE, "Filesystem type (e.g. freebsd-ufs, freebsd-zfs, "
+		{0, "Tipo:", 5, 0, 0, FALSE, "", 11, 0, 12, 15, 0,
+		    FALSE, "Tipo filesystem (es. freebsd-ufs, freebsd-zfs, "
 		    "freebsd-swap)", FALSE},
-		{0, "Size:", 5, 1, 0, FALSE, "", 11, 1, 12, 0, 0,
-		    FALSE, "Partition size. Append K, M, G for kilobytes, "
-		    "megabytes or gigabytes.", FALSE},
+		{0, "Dimensione:", 5, 1, 0, FALSE, "", 11, 1, 12, 0, 0,
+		    FALSE, "Dimensione partizione. Aggiungi K, M, G per kilobytes, "
+		    "megabytes o gigabytes.", FALSE},
 		{0, "Mountpoint:", 11, 2, 0, FALSE, "", 11, 2, 12, 15, 0,
-		    FALSE, "Path at which to mount this partition (leave blank "
-		    "for swap, set to / for root filesystem)", FALSE},
-		{0, "Label:", 7, 3, 0, FALSE, "", 11, 3, 12, 15, 0, FALSE,
-		    "Partition name. Not all partition schemes support this.",
+		    FALSE, "Percorso dove scrivere partizione(lascia bianco "
+		    "per swap, scrivi / per filesystem di root)", FALSE},
+		{0, "Etichetta:", 7, 3, 0, FALSE, "", 11, 3, 12, 15, 0, FALSE,
+		    "Nome partizione. Non tutti gli schemi di partizione lo supportano.",
 		    FALSE},
 	};
 
@@ -614,15 +614,15 @@ gpart_edit(struct gprovider *pp)
 	items[1].text = sizestr;
 
 editpart:
-	choice = dlg_form("Edit Partition", "", 0, 0, 0, nitems, items, &junk);
+	choice = dlg_form("Modifica Partizione", "", 0, 0, 0, nitems, items, &junk);
 
 	if (choice) /* Cancel pressed */
 		goto endedit;
 
 	/* Check if the label has a / in it */
 	if (strchr(items[3].text, '/') != NULL) {
-		dialog_msgbox("Error", "Label contains a /, which is not an "
-		    "allowed character.", 0, 0, TRUE);
+		dialog_msgbox("Errore", "Etichetta contiene un /, che non è un "
+		    "carattere ammesso.", 0, 0, TRUE);
 		goto editpart;
 	}
 
@@ -637,7 +637,7 @@ editpart:
 	gctl_ro_param(r, "type", -1, items[0].text);
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') {
-		gpart_show_error("Error", NULL, errstr);
+		gpart_show_error("Errore", NULL, errstr);
 		gctl_free(r);
 		goto editpart;
 	}
@@ -894,17 +894,17 @@ gpart_create(struct gprovider *pp, char *default_type, char *default_size,
 	unsigned i;
 
 	DIALOG_FORMITEM items[] = {
-		{0, "Type:", 5, 0, 0, FALSE, "freebsd-ufs", 11, 0, 12, 15, 0,
-		    FALSE, "Filesystem type (e.g. freebsd-ufs, freebsd-zfs, "
+		{0, "Tipo:", 5, 0, 0, FALSE, "freebsd-ufs", 11, 0, 12, 15, 0,
+		    FALSE, "Tipo filesystem (es. freebsd-ufs, freebsd-zfs, "
 		    "freebsd-swap)", FALSE},
-		{0, "Size:", 5, 1, 0, FALSE, "", 11, 1, 12, 15, 0,
-		    FALSE, "Partition size. Append K, M, G for kilobytes, "
-		    "megabytes or gigabytes.", FALSE},
+		{0, "Dimensione:", 5, 1, 0, FALSE, "", 11, 1, 12, 15, 0,
+		    FALSE, "Dimensione partizione. Aggiungi K, M, G per kilobytes, "
+		    "megabytes o gigabytes.", FALSE},
 		{0, "Mountpoint:", 11, 2, 0, FALSE, "", 11, 2, 12, 15, 0,
-		    FALSE, "Path at which to mount partition (blank for "
-		    "swap, / for root filesystem)", FALSE},
-		{0, "Label:", 7, 3, 0, FALSE, "", 11, 3, 12, 15, 0, FALSE,
-		    "Partition name. Not all partition schemes support this.",
+		    FALSE, "Percorso dove scrivere partizione(lascia bianco "
+		    "per swap, scrivi / per filesystem di root)", FALSE},
+		{0, "Etichetta:", 7, 3, 0, FALSE, "", 11, 3, 12, 15, 0, FALSE,
+		    "Nome partizione. Non tutti gli schemi di partizione lo supportano.",
 		    FALSE},
 	};
 
@@ -940,8 +940,8 @@ gpart_create(struct gprovider *pp, char *default_type, char *default_size,
 	if (geom == NULL || scheme == NULL || strcmp(scheme, "(none)") == 0) {
 		if (gpart_partition(pp->lg_name, NULL) == 0)
 			dialog_msgbox("",
-			    "The partition table has been successfully created."
-			    " Please press Create again to create partitions.",
+			    "La tabella di partizione è stata creta."
+			    " Premere di nuovo Crea per creare partizioni.",
 			    0, 0, TRUE);
 
 		return;
@@ -957,7 +957,7 @@ gpart_create(struct gprovider *pp, char *default_type, char *default_size,
 
 	maxsize = size = gpart_max_free(geom, &firstfree);
 	if (size <= 0) {
-		dialog_msgbox("Error", "No free space left on device.", 0, 0,
+		dialog_msgbox("Errore", "Finito spazio libero sul dispositivo.", 0, 0,
 		    TRUE);
 		return;
 	}
@@ -987,9 +987,9 @@ gpart_create(struct gprovider *pp, char *default_type, char *default_size,
 	newfs_command(options_fstype, newfs, 1);
 addpartform:
 	if (interactive) {
-		dialog_vars.extra_label = "Options";
+		dialog_vars.extra_label = "Opzioni";
 		dialog_vars.extra_button = TRUE;
-		choice = dlg_form("Add Partition", "", 0, 0, 0, nitems,
+		choice = dlg_form("Aggiungi Partizione", "", 0, 0, 0, nitems,
 		    items, &junk);
 		dialog_vars.extra_button = FALSE;
 		switch (choice) {
@@ -1019,8 +1019,8 @@ addpartform:
 		if (expand_number(items[1].text, &bytes) != 0) {
 			char error[512];
 
-			sprintf(error, "Invalid size: %s\n", strerror(errno));
-			dialog_msgbox("Error", error, 0, 0, TRUE);
+			sprintf(error, "Dimensione errata: %s\n", strerror(errno));
+			dialog_msgbox("Errore", error, 0, 0, TRUE);
 			goto addpartform;
 		}
 		size = MIN((intmax_t)(bytes/sector), maxsize);
@@ -1028,8 +1028,8 @@ addpartform:
 
 	/* Check if the label has a / in it */
 	if (strchr(items[3].text, '/') != NULL) {
-		dialog_msgbox("Error", "Label contains a /, which is not an "
-		    "allowed character.", 0, 0, TRUE);
+		dialog_msgbox("Errore", "Etichetta contiene /, che non è un "
+		    "carattere ammesso.", 0, 0, TRUE);
 		goto addpartform;
 	}
 
@@ -1039,11 +1039,11 @@ addpartform:
 		choice = 0;
 		if (interactive) {
 			dialog_vars.defaultno = TRUE;
-			choice = dialog_yesno("Warning",
-			    "This partition does not have a valid mountpoint "
-			    "(for the partition from which you intend to boot the "
-			    "operating system, the mountpoint should be /). Are you "
-			    "sure you want to continue?"
+			choice = dialog_yesno("Attenzione",
+			    "Questa partizione non ha un mountpoint valido "
+			    "(per la partizione da cui intendi avviare il "
+			    "sistema operativo, il mountpoint deve essere /). Sei "
+			    "sicuro che vuoi continuare?"
 			, 0, 0);
 			dialog_vars.defaultno = FALSE;
 		}
@@ -1057,21 +1057,21 @@ addpartform:
 	 */
 	if (strcmp(items[0].text, "freebsd") == 0 &&
 	    strlen(items[2].text) > 0) {
-		dialog_msgbox("Error", "Partitions of type \"freebsd\" are "
-		    "nested BSD-type partition schemes and cannot have "
-		    "mountpoints. After creating one, select it and press "
-		    "Create again to add the actual file systems.", 0, 0, TRUE);
+		dialog_msgbox("Errore", "Le partizioni del tipo \"freebsd\" "
+		    "non possono avere mountpoint. "
+		    "Dopo averne creata una, selezionalo e premi "
+		    "Crea di nuovo per aggiungerlo all'attuale filesystem.", 0, 0, TRUE);
 		goto addpartform;
 	}
 
 	/* If this is the root partition, check that this scheme is bootable */
 	if (strcmp(items[2].text, "/") == 0 && !is_scheme_bootable(scheme)) {
 		char message[512];
-		sprintf(message, "This partition scheme (%s) is not bootable "
-		    "on this platform. Are you sure you want to proceed?",
+		sprintf(message, "Questa partizione (%s) non è avviabile "
+		    "su questo sistema. Sei sicuro di voler procedere?",
 		    scheme);
 		dialog_vars.defaultno = TRUE;
-		choice = dialog_yesno("Warning", message, 0, 0);
+		choice = dialog_yesno("Attenzione", message, 0, 0);
 		dialog_vars.defaultno = FALSE;
 		if (choice == 1) /* cancel */
 			goto addpartform;
@@ -1081,11 +1081,11 @@ addpartform:
 	if (strcmp(items[2].text, "/") == 0 && !is_fs_bootable(scheme,
 	    items[0].text)) {
 		char message[512];
-		sprintf(message, "This file system (%s) is not bootable "
-		    "on this system. Are you sure you want to proceed?",
+		sprintf(message, "Questa partizione (%s) non è avviabile "
+		    "su questo sistema. Sei sicuro di voler procedere?",
 		    items[0].text);
 		dialog_vars.defaultno = TRUE;
-		choice = dialog_yesno("Warning", message, 0, 0);
+		choice = dialog_yesno("Attenzione", message, 0, 0);
 		dialog_vars.defaultno = FALSE;
 		if (choice == 1) /* cancel */
 			goto addpartform;
@@ -1115,10 +1115,10 @@ addpartform:
 	    strcmp(items[2].text, "/") == 0) && bootpart_size(scheme) > 0 &&
 	    pp == NULL) {
 		if (interactive)
-			choice = dialog_yesno("Boot Partition",
-			    "This partition scheme requires a boot partition "
-			    "for the disk to be bootable. Would you like to "
-			    "make one now?", 0, 0);
+			choice = dialog_yesno("Partizione Boot",
+			    "Questo schema di partizioni richiede una partizione di boot "
+			    "per il disco da avviare. Vorresti "
+			    "farlo adesso?", 0, 0);
 		else
 			choice = 0;
 
@@ -1137,7 +1137,7 @@ addpartform:
 			gctl_rw_param(r, "output", sizeof(output), output);
 			errstr = gctl_issue(r);
 			if (errstr != NULL && errstr[0] != '\0') 
-				gpart_show_error("Error", NULL, errstr);
+				gpart_show_error("Errore", NULL, errstr);
 			gctl_free(r);
 
 			get_part_metadata(strtok(output, " "), 1)->bootcode = 1;
@@ -1167,7 +1167,7 @@ addpartform:
 	gctl_rw_param(r, "output", sizeof(output), output);
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') {
-		gpart_show_error("Error", NULL, errstr);
+		gpart_show_error("Errore", NULL, errstr);
 		gctl_free(r);
 		goto addpartform;
 	}
@@ -1248,8 +1248,8 @@ gpart_delete(struct gprovider *pp)
 	 */
 	if (!is_partition) {
 		if (geom == NULL)
-			dialog_msgbox("Error",
-			    "Only partitions can be deleted.", 0, 0, TRUE);
+			dialog_msgbox("Errore",
+			    "È possibile eliminare solo le partizioni.", 0, 0, TRUE);
 		return;
 	}
 
@@ -1269,7 +1269,7 @@ gpart_delete(struct gprovider *pp)
 
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') {
-		gpart_show_error("Error", NULL, errstr);
+		gpart_show_error("Errore", NULL, errstr);
 		gctl_free(r);
 		return;
 	}
@@ -1294,7 +1294,7 @@ gpart_revert_all(struct gmesh *mesh)
 	}
 
 	if (strcmp(classp->lg_name, "PART") != 0) {
-		dialog_msgbox("Error", "gpart not found!", 0, 0, TRUE);
+		dialog_msgbox("Errore", "gpart non trovato!", 0, 0, TRUE);
 		return;
 	}
 
@@ -1302,7 +1302,7 @@ gpart_revert_all(struct gmesh *mesh)
 		modified = "true"; /* XXX: If we don't know (kernel too old),
 				    * assume there are modifications. */
 		LIST_FOREACH(gc, &gp->lg_config, lg_config) {
-			if (strcmp(gc->lg_name, "modified") == 0) {
+			if (strcmp(gc->lg_name, "modicato") == 0) {
 				modified = gc->lg_val;
 				break;
 			}
@@ -1350,7 +1350,7 @@ gpart_commit(struct gmesh *mesh)
 	}
 
 	if (strcmp(classp->lg_name, "PART") != 0) {
-		dialog_msgbox("Error", "gpart not found!", 0, 0, TRUE);
+		dialog_msgbox("Errore", "gpart non trovato!", 0, 0, TRUE);
 		return;
 	}
 
@@ -1358,7 +1358,7 @@ gpart_commit(struct gmesh *mesh)
 		modified = "true"; /* XXX: If we don't know (kernel too old),
 				    * assume there are modifications. */
 		LIST_FOREACH(gc, &gp->lg_config, lg_config) {
-			if (strcmp(gc->lg_name, "modified") == 0) {
+			if (strcmp(gc->lg_name, "modificatto") == 0) {
 				modified = gc->lg_val;
 				break;
 			}
@@ -1398,7 +1398,7 @@ gpart_commit(struct gmesh *mesh)
 
 		errstr = gctl_issue(r);
 		if (errstr != NULL && errstr[0] != '\0') 
-			gpart_show_error("Error", NULL, errstr);
+			gpart_show_error("Errore", NULL, errstr);
 		gctl_free(r);
 	}
 }

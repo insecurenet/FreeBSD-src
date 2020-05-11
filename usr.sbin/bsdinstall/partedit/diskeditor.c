@@ -67,12 +67,12 @@ diskeditor_show(const char *title, const char *cprompt,
 	WINDOW *dialog, *partitions;
 	char *prompt;
 	const char *buttons[] =
-	    { "Create", "Delete", "Modify", "Revert", "Auto", "Finish", NULL };
+	    { "Crea", "Cancella", "Modifica", "Ripristina", "Auto", "Finisci", NULL };
 	const char *help_text[] = {
-	    "Add a new partition", "Delete selected partition or partitions",
-	    "Change partition type or mountpoint",
-	    "Revert changes to disk setup", "Use guided partitioning tool",
-	    "Exit partitioner (will ask whether to save changes)", NULL };
+	    "Crea nuova partizione", "Cancella le partizioni selezionate",
+	    "Cambia tipo o mountpoint della partizione",
+	    "Ripristina cambiamenti al disco", "Usa lo strumento di partizionamento guidato",
+	    "Esci dall'editor di partizionamento (richiesto salvataggio modifiche)", NULL };
 	int x, y;
 	int i;
 	int height, width, min_width;
