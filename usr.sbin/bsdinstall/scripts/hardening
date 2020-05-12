@@ -32,19 +32,19 @@ echo -n > $BSDINSTALL_TMPETC/rc.conf.hardening
 echo -n > $BSDINSTALL_TMPETC/sysctl.conf.hardening
 
 exec 3>&1
-FEATURES=$( dialog --backtitle "FreeBSD Installer" \
-    --title "System Hardening" --nocancel --notags --separate-output \
-    --checklist "Choose system security hardening options:" \
+FEATURES=$( dialog --backtitle "Installazione Firew4ll" \
+    --title "Rafforzamento Sistema" --nocancel --notags --separate-output \
+    --checklist "Scegli le opzioni di rafforzamento della sicurezza del sistema:" \
     0 0 0 \
-	"hide_uids" "Hide processes running as other users" ${hide_uids:-off} \
-	"hide_gids" "Hide processes running as other groups" ${hide_gids:-off} \
-	"read_msgbuf" "Disable reading kernel message buffer for unprivileged users" ${read_msgbuf:-off} \
-	"proc_debug" "Disable process debugging facilities for unprivileged users" ${proc_debug:-off} \
-	"random_pid" "Randomize the PID of newly created processes" ${random_pid:-off} \
+	"hide_uids" "Nascondi i processi in esecuzione come altri utenti" ${hide_uids:-off} \
+	"hide_gids" "Nascondi i processi in esecuzione come altri gruppi" ${hide_gids:-off} \
+	"read_msgbuf" "Disabilita la lettura del buffer dei messaggi del kernel per utenti normali" ${read_msgbuf:-off} \
+	"proc_debug" "Disabilitare le funzionalità di debug dei processi per utenti normali" ${proc_debug:-off} \
+	"random_pid" "Randomizza il PID dei processi appena creati" ${random_pid:-off} \
 	"stack_guard" "Insert stack guard page ahead of the growable segments" ${stack_guard:-off} \
-	"clear_tmp" "Clean the /tmp filesystem on system startup" ${clear_tmp:-off} \
-	"disable_syslogd" "Disable opening Syslogd network socket (disables remote logging)" ${disable_syslogd:-off} \
-	"disable_sendmail" "Disable Sendmail service" ${disable_sendmail:-off} \
+	"clear_tmp" "Pulisci /tmp all'avvio del sistema" ${clear_tmp:-off} \
+	"disable_syslogd" "Disabilita l'apertura del socket di rete Syslogd (disabilita la registrazione remota)" ${disable_syslogd:-off} \
+	"disable_sendmail" "Disabilita il servizio Sendmail" ${disable_sendmail:-off} \
 2>&1 1>&3 )
 exec 3>&-
 

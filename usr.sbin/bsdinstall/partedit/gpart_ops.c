@@ -87,22 +87,22 @@ newfs_command(const char *fstype, char *command, int use_default)
 	if (strcmp(fstype, "freebsd-ufs") == 0) {
 		int i;
 		DIALOG_LISTITEM items[] = {
-			{"UFS1", "UFS Version 1",
-			    "Use version 1 of the UFS file system instead "
-			    "of version 2 (not recommended)", 0 },
+			{"UFS1", "UFS Versione 1",
+			    "Usa versione 1 del filesystem UFS invece "
+			    "della versione 2 (non raccomandato)", 0 },
 			{"SU", "Softupdates",
-			    "Enable softupdates (default)", 1 },
+			    "Abilita softupdates (default)", 1 },
 			{"SUJ", "Softupdates journaling",
-			    "Enable file system journaling (default - "
-			    "turn off for SSDs)", 1 },
-			{"TRIM", "Enable SSD TRIM support",
-			    "Enable TRIM support, useful on solid-state drives",
+			    "Abilita filesystem journaling (default - "
+			    "disabilita per SSDs)", 1 },
+			{"TRIM", "Abilita suppoto SSD TRIM",
+			    "Abilita supporto TRIM, utile su unità a stato solido",
 			    0 },
 		};
 
 		if (!use_default) {
 			int choice;
-			choice = dlg_checklist("UFS Options", "", 0, 0, 0,
+			choice = dlg_checklist("UFS Opzioni", "", 0, 0, 0,
 			    nitems(items), items, NULL,
 			    FLAG_CHECK, &i);
 			if (choice == 1) /* Cancel */
@@ -126,21 +126,21 @@ newfs_command(const char *fstype, char *command, int use_default)
 		int i;
 		DIALOG_LISTITEM items[] = {
 			{"fletcher4", "checksum algorithm: fletcher4",
-			    "Use fletcher4 for data integrity checking. "
+			    "Usa fletcher4 per check integrità dei dati. "
 			    "(default)", 1 },
 			{"fletcher2", "checksum algorithm: fletcher2",
-			    "Use fletcher2 for data integrity checking. "
+			    "Use fletcher2 per check integrità dei dati. "
 			    "(not recommended)", 0 },
 			{"sha256", "checksum algorithm: sha256",
-			    "Use sha256 for data integrity checking. "
+			    "Use sha256 per check integrità dei dati. "
 			    "(not recommended)", 0 },
-			{"atime", "Update atimes for files",
-			    "Disable atime update", 0 },
+			{"atime", "Aggiornamento atimes per file",
+			    "Disabilita aggiornamenti atime", 0 },
 		};
 
 		if (!use_default) {
 			int choice;
-			choice = dlg_checklist("ZFS Options", "", 0, 0, 0,
+			choice = dlg_checklist("ZFS Opzioni", "", 0, 0, 0,
 			    nitems(items), items, NULL,
 			    FLAG_CHECK, &i);
 			if (choice == 1) /* Cancel */
@@ -173,16 +173,16 @@ newfs_command(const char *fstype, char *command, int use_default)
 		int i;
 		DIALOG_LISTITEM items[] = {
 			{"FAT32", "FAT Type 32",
-			    "Create a FAT32 filesystem (default)", 1 },
+			    "Crea un filesystem FAT32 (default)", 1 },
 			{"FAT16", "FAT Type 16",
-			    "Create a FAT16 filesystem", 0 },
+			    "Crea un filesystem FAT16", 0 },
 			{"FAT12", "FAT Type 12",
-			    "Create a FAT12 filesystem", 0 },
+			    "Crea un filesystem FAT12", 0 },
 		};
 
 		if (!use_default) {
 			int choice;
-			choice = dlg_checklist("FAT Options", "", 0, 0, 0,
+			choice = dlg_checklist("FAT Opzioni", "", 0, 0, 0,
 			    nitems(items), items, NULL,
 			    FLAG_RADIO, &i);
 			if (choice == 1) /* Cancel */
@@ -202,8 +202,8 @@ newfs_command(const char *fstype, char *command, int use_default)
 		}
 	} else {
 		if (!use_default)
-			dialog_msgbox("Error", "No configurable options exist "
-			    "for this filesystem.", 0, 0, TRUE);
+			dialog_msgbox("Errore", "Nessuna opzione configurabile "
+			    "per questo filesystem.", 0, 0, TRUE);
 		command[0] = '\0';
 	}
 }
@@ -216,23 +216,23 @@ choose_part_type(const char *def_scheme)
 
 	DIALOG_LISTITEM items[] = {
 		{"APM", "Apple Partition Map",
-		    "Bootable on PowerPC Apple Hardware", 0 },
+		    "Avviabile su PowerPC Apple Hardware", 0 },
 		{"BSD", "BSD Labels",
-		    "Bootable on most x86 systems", 0 },
+		    "Avviabile su molti sistemi x86", 0 },
 		{"GPT", "GUID Partition Table",
-		    "Bootable on most x86 systems and EFI aware ARM64", 0 },
+		    "Avviabile su molti sistemi x86 e EFI-ARM64", 0 },
 		{"MBR", "DOS Partitions",
-		    "Bootable on most x86 systems", 0 },
+		    "Avviabile su molti sistemi x86", 0 },
 		{"PC98", "NEC PC9801 Partition Table",
-		    "Bootable on NEC PC9801 systems", 0 },
+		    "Avviabile su sistemi NEC PC9801", 0 },
 		{"VTOC8", "Sun VTOC8 Partition Table",
-		    "Bootable on Sun SPARC systems", 0 },
+		    "Avviabile su sistemi Sun SPARC", 0 },
 	};
 
 parttypemenu:
 	dialog_vars.default_item = __DECONST(char *, def_scheme);
-	cancel = dlg_menu("Partition Scheme",
-	    "Select a partition scheme for this volume:", 0, 0, 0,
+	cancel = dlg_menu("Schema di Partizione",
+	    "Seleziona uno schema di partizione per questo volume:", 0, 0, 0,
 	    nitems(items), items, &choice, NULL);
 	dialog_vars.default_item = NULL;
 

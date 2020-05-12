@@ -34,9 +34,9 @@
 : ${DIALOG_ESC=255}
 
 exec 3>&1
-MIRROR=`dialog --backtitle "FreeBSD Installer" \
-    --title "Mirror Selection" --extra-button --extra-label "Other" \
-    --menu "Please select the site closest to you or \"other\" if you'd like to specify a different choice.  Also note that not every site listed here carries more than the base distribution kits. Only Primary sites are guaranteed to carry the full range of possible distributions. Select a site that's close!" \
+MIRROR=`dialog --backtitle "Installazione Firew4ll" \
+    --title "Seleziona Mirror" --extra-button --extra-label "Altri" \
+    --menu "Seleziona il sito più vicino a te o \"altri\" se desideri fare una scelta diversa.  Non tutti i siti elencati qui contengono dei sistemi di base. Solo i siti primari sono garantiti per trasportare l'intera gamma di possibili distribuzioni. Seleziona un sito vicino!" \
     0 0 0 \
 	ftp://ftp.freebsd.org	"Main Site"\
 	ftp://ftp.freebsd.org 	"IPv6 Main Site"\
@@ -179,9 +179,9 @@ $DIALOG_OK)
 	;;
 $DIALOG_EXTRA)
 	exec 3>&1
-	BSDINSTALL_DISTSITE=`dialog --backtitle "FreeBSD Installer" \
-	    --title "Mirror Selection" \
-	    --inputbox "Please enter the URL to an alternate FreeBSD mirror:" \
+	BSDINSTALL_DISTSITE=`dialog --backtitle "Installazione Firew4ll" \
+	    --title "Selezione Mirror" \
+	    --inputbox "Inserisci l'URL di un alternativo FreeBSD mirror:" \
 	    0 0 "$BSDINSTALL_DISTSITE" 2>&1 1>&3`
 	MIRROR_BUTTON=$?
 	exec 3>&-

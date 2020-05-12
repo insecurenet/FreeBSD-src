@@ -34,14 +34,14 @@ CONFIG_XML_PATH=""
 
 look_for_config_xml_config_msdos() {
 	mkdir -p ${recovery_mount}
-	echo -n "Looking for config.xml on "
+	echo -n "Cerca un un file config.xml"
 	for try_device in `/sbin/gpart show -p | /usr/bin/egrep '(fat32|\!11|\!12|\!14)' | /usr/bin/awk '{print $3;}'`; do
 		if [ ! -e /dev/${try_device} ]; then
 			continue
 		fi
 		echo -n "${try_device}: "
 		if /sbin/mount -t msdosfs /dev/${try_device} ${recovery_mount} 2>/dev/null ; then
-			echo -n "[found msdos] "
+			echo -n "[trovato msdos] "
 			# look for config.xml
 			if [ -r ${recovery_mount}/conf/config.xml  ]; then
 				echo -n "[config.xml on ${try_device}] "
@@ -66,8 +66,8 @@ if look_for_config_xml_config_msdos; then
 	# Remove rrddata if it is present
 	sed -i '' -e '/<rrddata>/,/<\/rrddata>/ d' ${recovery_dir}/config.xml
 	/sbin/umount ${recovery_mount} 2>&1
-	echo -n "[Copied config.xml file to recovery area] "
+	echo -n "[Copiato file config.xml in area di recupero] "
 else
-	echo -n "[Could not locate an existing config.xml file!] "
+	echo -n "[Nessun file config.xml trovato!] "
 fi
-echo "Done."
+echo "Fatto."

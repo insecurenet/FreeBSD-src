@@ -235,7 +235,7 @@ f_device_get_all()
 {
 	local devname type desc capacity
 
-	f_dprintf "f_device_get_all: Probing devices..."
+	f_dprintf "f_device_get_all: Trovando dispositivi..."
 	f_dialog_info "$msg_probing_devices_please_wait_this_can_take_a_while"
 
 	# First go for the network interfaces
@@ -247,8 +247,8 @@ f_device_get_all()
 	for geom in $geoms; do
 		if ! f_device_probe_geom $geom; then
 			debug= $geom get name geom_name
-			f_dprintf "WARNING! Unable to classify %s as %s" \
-			          "GEOM device $geom_name" "media source"
+			f_dprintf "ATTENZIONE! Impossibile classificare %s come %s" \
+			          "dispositivo GEOM $geom_name" "sorgente media"
 		fi
 	done
 }
@@ -269,7 +269,7 @@ f_device_get_all_network()
 		# Try and find its description
 		f_device_desc "$devname" $DEVICE_TYPE_NETWORK desc
 
-		f_dprintf "Found network device named %s" "$devname"
+		f_dprintf "Trovato dispositivo di rete %s" "$devname"
 		debug= f_device_register device $devname "$desc" \
 			"$devname" $DEVICE_TYPE_NETWORK 1 \
 			f_media_init_network "" f_media_shutdown_network "" -1
@@ -415,7 +415,7 @@ f_device_probe_geom()
 		# First attempt to classify by device catalog (see MAIN)
 		case "$catalog_type" in
 		$DEVICE_TYPE_CDROM)
-			f_dprintf "Found CDROM device for disk %s" "$devname"
+			f_dprintf "Trovato CDROM per disco %s" "$devname"
 			debug= f_device_register device "$devname" "$desc" \
 				"/dev/$devname" $DEVICE_TYPE_CDROM 1 \
 				f_media_init_cdrom f_media_get_cdrom \
@@ -425,7 +425,7 @@ f_device_probe_geom()
 		esac
 
 		# Fall back to register label device as a disk and taste it
-		f_dprintf "Found disk device named %s" "$devname"
+		f_dprintf "Trovato disco %s" "$devname"
 		debug= f_struct "$p_provider_config" get \
 			ident disk_ident ||
 			debug= f_struct "$provider_config" get \
@@ -442,7 +442,7 @@ f_device_probe_geom()
 		return $retval
 		;;
 	$GEOM_CLASS_FD)
-		f_dprintf "Found floppy device named %s" "$devname"
+		f_dprintf "Trovato floppy %s" "$devname"
 		debug= f_device_register device "$devname" "$desc" \
 			"/dev/$devname" $DEVICE_TYPE_FLOPPY 1 \
 			f_media_init_floppy f_media_get_floppy \
@@ -453,7 +453,7 @@ f_device_probe_geom()
 		: fall through to below section # reduces indentation level
 		;;
 	$GEOM_CLASS_MD)
-		f_dprintf "Found disk device named %s" "$devname"
+		f_dprintf "Trovato disco %s" "$devname"
 		debug= f_device_register device "$devname" "$desc" \
 			"/dev/$devname" $DEVICE_TYPE_DISK 1 \
 			"" "" "" "" "$capacity"
@@ -505,7 +505,7 @@ f_device_probe_geom()
 		if [ "$device_type" = "$DEVICE_TYPE_UFS" -a \
 		     "$catalog_type" = "$DEVICE_TYPE_USB" ]
 		then
-			f_dprintf "Found USB device for partition %s" \
+			f_dprintf "Trovato dispositivo USB per la partizione %s" \
 				  "$devname"
 			debug= f_struct "$p_provider_geom" get \
 				name disk_name ||
@@ -541,7 +541,7 @@ f_device_probe_geom()
 		return $retval
 		;;
 	$GEOM_CLASS_ZFS_ZVOL)
-		f_dprintf "Found disk device named %s" "$devname"
+		f_dprintf "Trovato disco chiamato %s" "$devname"
 		debug= f_device_register device \
 			"$devname" "${desc:-GEOM ZFS::ZVOL device}" \
 			"/dev/$devname" $DEVICE_TYPE_DISK 1 \
@@ -601,7 +601,7 @@ f_device_probe_geom()
 		return $?
 		;;
 	iso9660/*)
-		f_dprintf "Found CDROM device labeled %s" "$devname"
+		f_dprintf "Trovato CDROM chiamato %s" "$devname"
 		debug= f_device_register device \
 			"$devname" "ISO9660 file system" \
 			"/dev/$devname" $DEVICE_TYPE_CDROM 1 \
@@ -626,7 +626,7 @@ f_device_probe_geom()
 		# First attempt to classify by device catalog (see MAIN)
 		case "$catalog_type" in
 		$DEVICE_TYPE_CDROM)
-			f_dprintf "Found CDROM device for disk %s" "$devname"
+			f_dprintf "Trovato CDROM per il disco %s" "$devname"
 			debug= f_device_register device "$devname" "$desc" \
 				"/dev/$devname" $DEVICE_TYPE_CDROM 1 \
 				f_media_init_cdrom f_media_get_cdrom \
@@ -636,7 +636,7 @@ f_device_probe_geom()
 		esac
 
 		# Fall back to register label device as a disk and taste it
-		f_dprintf "Found disk device labeled %s" "$devname"
+		f_dprintf "Trovato disco chiamato %s" "$devname"
 		debug= f_device_register device \
 			"$devname" "GEOM LABEL device" \
 			"/dev/$devname" $DEVICE_TYPE_DISK 1 \
@@ -650,7 +650,7 @@ f_device_probe_geom()
 		return $retval
 		;;
 	msdosfs/*)
-		f_dprintf "Found DOS partition labeled %s" "$devname"
+		f_dprintf "Trovata partizione DOS chiamata %s" "$devname"
 		debug= f_device_register device "$devname" "DOS file system" \
 			"/dev/$devname" $DEVICE_TYPE_DOS 1 \
 			f_media_init_dos f_media_get_dos \
@@ -658,7 +658,7 @@ f_device_probe_geom()
 		return $?
 		;;
 	ufs/*|ufsid/*)
-		f_dprintf "Found UFS partition labeled %s" "$devname"
+		f_dprintf "Trovata partizione UFS chiamata %s" "$devname"
 		debug= f_device_register device "$devname" "UFS file system" \
 			"/dev/$devname" $DEVICE_TYPE_UFS 1 \
 			f_media_init_ufs f_media_get_ufs \
@@ -693,7 +693,7 @@ f_device_probe_geom_part()
 	#
 	case "$__gpart_type" in
 	fat16|fat32)
-		f_dprintf "Found DOS partition named %s" "$__devname"
+		f_dprintf "Trovata partizione DOS chiamata %s" "$__devname"
 		debug= f_device_register "$__var_to_set" \
 			"$__devname" "DOS file system" \
 			"/dev/$__devname" $DEVICE_TYPE_DOS 1 \
@@ -706,7 +706,7 @@ f_device_probe_geom_part()
 			__magic=$( file -bs "/dev/$__devname" 2> /dev/null )
 		case "$__magic" in
 		*"Unix Fast File system"*)
-			f_dprintf "Found UFS partition named %s" "$__devname"
+			f_dprintf "Trovata partizione UFS chiamata %s" "$__devname"
 			debug= f_device_register "$__var_to_set" \
 				"$__devname" "UFS file system" \
 				"/dev/$__devname" $DEVICE_TYPE_UFS 1 \
@@ -717,7 +717,7 @@ f_device_probe_geom_part()
 		return $FAILURE
 		;;
 	freebsd-ufs)
-		f_dprintf "Found UFS partition named %s" "$__devname"
+		f_dprintf "Trovata partizione UFS chiamata %s" "$__devname"
 		debug= f_device_register "$__var_to_set" \
 			"$__devname" "UFS file system" \
 			"/dev/$__devname" $DEVICE_TYPE_UFS 1 \
@@ -759,7 +759,7 @@ f_device_probe_disk_fs()
 
 	case "$__magic" in
 	*"ISO 9660"*)
-		f_dprintf "Found CDROM device for disk %s" "$__devname"
+		f_dprintf "Trovato dispositivo CDROM per disco %s" "$__devname"
 		debug= f_device_register "$__var_to_set" \
 			"$__devname" "ISO9660 file system" \
 			"/dev/$__devname" $DEVICE_TYPE_CDROM 1 \
@@ -768,7 +768,7 @@ f_device_probe_disk_fs()
 		return $?
 		;;
 	*"Unix Fast File system"*)
-		f_dprintf "Found UFS device for disk %s" "$__devname"
+		f_dprintf "Trovato dispositivo UFS per disco %s" "$__devname"
 		debug= f_device_register "$__var_to_set" \
 			"$__devname" "UFS file system" \
 			"/dev/$__devname" $DEVICE_TYPE_UFS 1 \
@@ -777,7 +777,7 @@ f_device_probe_disk_fs()
 		return $?
 		;;
 	*"FAT (12 bit)"*|*"FAT (16 bit)"*|*"FAT (32 bit)"*)
-		f_dprintf "Found DOS device for disk %s" "$__devname"
+		f_dprintf "Trovato dispositivo DOS per disco %s" "$__devname"
 		debug= f_device_register "$__var_to_set" \
 			"$__devname" "DOS file system" \
 			"/dev/$__devname" $DEVICE_TYPE_DOS 1 \
@@ -1279,7 +1279,7 @@ f_disk   "mlxd%d" "Mylex RAID disk"
 f_disk   "twed%d" "3ware ATA RAID array"
 f_disk   "vtbd%d" "VirtIO Block Device"
 f_floppy "fd%d"   "Floppy Drive unit A"
-f_usb    "da%da"  "USB Mass Storage Device"
+f_usb    "da%da"  "Dispositivo di massa USB"
 
 # Network interfaces/names
 f_network "ae%d"    "Attansic/Atheros L2 Fast Ethernet"
@@ -1379,7 +1379,7 @@ f_network "zyd%d"   "ZyDAS ZD1211/ZD1211B USB 802.11 wireless adapter"
 DEVICE_CATALOG_APPEND_ONLY= # Additional loading modifies existing devices
 
 f_count NCATALOG_DEVICES $DEVICE_CATALOG
-f_dprintf "%s: Initialized device catalog with %u names/descriptions." \
+f_dprintf "%s: Catalogo dispositivi inizializzato con %u nome/descrizione." \
           device.subr $NCATALOG_DEVICES
 
 #
@@ -1391,6 +1391,6 @@ case "$DEVICE_SELF_SCAN_ALL" in
 *) f_device_get_all
 esac
 
-f_dprintf "%s: Successfully loaded." device.subr
+f_dprintf "%s: Caricato con successo." device.subr
 
 fi # ! $_DEVICE_SUBR

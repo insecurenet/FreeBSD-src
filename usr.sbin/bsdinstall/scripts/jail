@@ -34,7 +34,7 @@ BSDCFG_SHARE="/usr/share/bsdconfig"
 
 ############################################################ MAIN
 
-f_dprintf "Began Installation at %s" "$( date )"
+f_dprintf "Installazione iniziata il %s" "$( date )"
 export BSDINSTALL_CHROOT=$1
 
 error() {
@@ -42,9 +42,9 @@ error() {
 	if [ -n "$1" ]; then
 		msg="$1\n\n"
 	fi
-	dialog --backtitle "FreeBSD Installer" --title "Abort" \
-	    --no-label "Exit" --yes-label "Restart" --yesno \
-	    "${msg}An installation step has been aborted. Would you like to restart the installation or exit the installer?" 0 0
+	dialog --backtitle "Installazione Firew4ll" --title "Annulla" \
+	    --no-label "Esci" --yes-label "Riavvia" --yesno \
+	    "${msg}Una fase dell'installazione è stata interrotta. Riavviare l'installazione o uscire dal programma di installazione?" 0 0
 	if [ $? -ne 0 ]; then
 		exit
 	else
@@ -55,7 +55,7 @@ error() {
 
 rm -rf $BSDINSTALL_TMPETC
 mkdir $BSDINSTALL_TMPETC
-mkdir -p $1 || error "mkdir failed for $1"
+mkdir -p $1 || error "mkdir fallito per $1"
 
 test ! -d $BSDINSTALL_DISTDIR && mkdir -p $BSDINSTALL_DISTDIR
 
@@ -64,9 +64,9 @@ if [ ! -f $BSDINSTALL_DISTDIR/MANIFEST -a -z "$BSDINSTALL_DISTSITE" ]; then
 	BSDINSTALL_DISTSITE=$(`dirname $0`/mirrorselect 2>&1 1>&3)
 	MIRROR_BUTTON=$?
 	exec 3>&-
-	test $MIRROR_BUTTON -eq 0 || error "No mirror selected"
+	test $MIRROR_BUTTON -eq 0 || error "Nessun mirror selezionato"
 	export BSDINSTALL_DISTSITE
-	fetch -o $BSDINSTALL_DISTDIR/MANIFEST $BSDINSTALL_DISTSITE/MANIFEST || error "Could not download $BSDINSTALL_DISTSITE/MANIFEST"
+	fetch -o $BSDINSTALL_DISTDIR/MANIFEST $BSDINSTALL_DISTSITE/MANIFEST || error "Non puoi scaricare $BSDINSTALL_DISTSITE/MANIFEST"
 fi
 
 export DISTRIBUTIONS="base.txz"
@@ -75,9 +75,9 @@ if [ -f $BSDINSTALL_DISTDIR/MANIFEST ]; then
 
 	exec 3>&1
 	EXTRA_DISTS=$(echo $DISTMENU | xargs dialog \
-	    --backtitle "FreeBSD Installer" \
-	    --title "Distribution Select" --nocancel --separate-output \
-	    --checklist "Choose optional system components to install:" \
+	    --backtitle "Installazione Firew4ll" \
+	    --title "Seleziona Distribuzuibe" --nocancel --separate-output \
+	    --checklist "Scegli i componenti opzionali da installare:" \
 	    0 0 0 \
 	2>&1 1>&3)
 	for dist in $EXTRA_DISTS; do
@@ -98,7 +98,7 @@ if [ -n "$FETCH_DISTRIBUTIONS" -a -z "$BSDINSTALL_DISTSITE" ]; then
 	BSDINSTALL_DISTSITE=`bsdinstall mirrorselect 2>&1 1>&3`
 	MIRROR_BUTTON=$?
 	exec 3>&-
-	test $MIRROR_BUTTON -eq 0 || error "No mirror selected"
+	test $MIRROR_BUTTON -eq 0 || error "Nessun mirror selezionato"
 	export BSDINSTALL_DISTSITE
 fi
 
@@ -106,25 +106,25 @@ if [ ! -z "$FETCH_DISTRIBUTIONS" ]; then
 	bsdinstall distfetch || error "Failed to fetch distribution"
 fi
 
-bsdinstall checksum || error "Distribution checksum failed"
-bsdinstall distextract || error "Distribution extract failed"
-bsdinstall rootpass || error "Could not set root password"
+bsdinstall checksum || error "Distribution checksum fallita"
+bsdinstall distextract || error "Distribution extract fallita"
+bsdinstall rootpass || error "Password  di root non settata"
 
 trap true SIGINT	# This section is optional
 bsdinstall services
 
-dialog --backtitle "FreeBSD Installer" --title "Add User Accounts" --yesno \
-    "Would you like to add users to the installed system now?" 0 0 && \
+dialog --backtitle "Installazione Firew4ll" --title "Aggiungi Account Utente" --yesno \
+    "Desideri aggiungere utenti al sistema installato ora?" 0 0 && \
     bsdinstall adduser
 
 trap error SIGINT	# SIGINT is bad again
-bsdinstall config  || error "Failed to save config"
+bsdinstall config  || error "Salvataggio configurazione fallita"
 cp /etc/resolv.conf $1/etc
 cp /etc/localtime $1/etc
 
 bsdinstall entropy
 
-f_dprintf "Installation Completed at %s" "$(date)"
+f_dprintf "Installazione completata il %s" "$(date)"
 exit $SUCCESS
 
 ################################################################################

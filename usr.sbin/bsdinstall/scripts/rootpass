@@ -27,11 +27,11 @@
 # $FreeBSD$
 
 clear
-echo "FreeBSD Installer"
+echo "Installazione Firew4ll"
 echo "========================"
 echo
 
-echo "Please select a password for the system management account (root):"
-echo "Typed characters will not be visible."
+echo "Inserisci una password per l'account amministratore di sistema (root):"
+echo "I caratteri premuti non saranno visibili."
 
 chroot $BSDINSTALL_CHROOT passwd root 2>&1

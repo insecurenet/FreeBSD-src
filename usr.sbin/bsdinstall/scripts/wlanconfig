@@ -32,7 +32,7 @@
 BSDCFG_SHARE="/usr/share/bsdconfig"
 . $BSDCFG_SHARE/common.subr || exit 1
 f_include $BSDCFG_SHARE/dialog.subr
-f_dialog_backtitle "FreeBSD Installer"
+f_dialog_backtitle "Installazione Firew4ll"
 
 ############################################################ FUNCTIONS
 
@@ -66,7 +66,7 @@ country_set()
 			--yes-label Change \
 			--no-label Ignore \
 			--yesno \
-			"Error while applying chosen settings ($error_str)" \
+			"Erroro quando si applicano le configurazioni scelte ($error_str)" \
 			0 0 || return $SUCCESS # Skip
 		return $FAILURE # Restart
 	else
@@ -111,8 +111,8 @@ dialog_country_select()
 		}
 	' | sort )
 
-	f_dialog_title "Regdomain selection"
-	prompt="Select your regdomain."
+	f_dialog_title "Seleziona Regdomain"
+	prompt="Seleziona il tuo regdomain."
 	eval f_dialog_menu_size height width rows \
 		\"\$DIALOG_TITLE\" \"\$DIALOG_BACKTITLE\" \
 		\"\$prompt\" \"\" $regdomains
@@ -128,8 +128,8 @@ dialog_country_select()
 	)
 	f_dialog_data_sanitize regdomain
 
-	f_dialog_title "Country selection"
-	prompt="Select your country."
+	f_dialog_title "Seleziona nazione"
+	prompt="Seleziona la tua nazione."
 	eval f_dialog_menu_size height width rows \
 		\"\$DIALOG_TITLE\" \"\$DIALOG_BACKTITLE\" \
 		\"\$prompt\" \"\" $countries
@@ -167,8 +167,8 @@ EOF
 #
 if ! f_eval_catch -d wlanconfig wpa_cli "wpa_cli ping"; then
 	if [ ! "$BSDINSTALL_CONFIGCURRENT" ]; then
-		f_show_err "Wireless cannot be configured without %s" \
-		           "making changes to the local system!"
+		f_show_err "Wireless non può essere configurata senza %s" \
+		           "facendo cambiamenti al sistema locale!"
 		exit 1
 	fi
 	f_eval_catch wlanconfig wpa_supplicant \
@@ -191,8 +191,8 @@ if [ "$BSDINSTALL_CONFIGCURRENT" ]; then
 	DEF_COUNTRY=$( echo "$INPUT" | cut -w -f 4 )
 	[ "$DEF_REGDOMAIN" = 0 ] && DEF_REGDOMAIN="<not selected>"
 	[ "$DEF_COUNTRY" = 0 ] && DEF_COUNTRY="<not selected>"
-	f_dialog_title "Regdomain/country"
-	if f_yesno "Change regdomain/country ($DEF_REGDOMAIN/$DEF_COUNTRY)?"
+	f_dialog_title "Regdomain/Nazione"
+	if f_yesno "Cambia regdomain/Nazione ($DEF_REGDOMAIN/$DEF_COUNTRY)?"
 	then
 		while ! dialog_country_select "$DEF_REGDOMAIN" "$DEF_COUNTRY"
 		do :; done
@@ -202,8 +202,8 @@ fi
 while :; do
 	SCANSSID=0
 	f_eval_catch -d wlanconfig wpa_cli "wpa_cli scan"
-	f_dialog_title "Scanning"
-	f_dialog_pause "Waiting 5 seconds to scan for wireless networks..." 5 ||
+	f_dialog_title "Cercando"
+	f_dialog_pause "Aspettando 5 secondi prima di fare uno scan per reti wireless..." 5 ||
 		exit 1
 
 	f_eval_catch -dk SCAN_RESULTS wlanconfig wpa_cli "wpa_cli scan_results"
@@ -213,12 +213,12 @@ while :; do
 
 	if [ ! "$NETWORKS" ]; then
 		f_dialog_title "$msg_error"
-		f_yesno "No wireless networks were found. Rescan?" && continue
+		f_yesno "Nessuna rete wireless trovata. Rescan?" && continue
 		exit 1
 	fi
 
-	f_dialog_title "Network Selection"
-	prompt="Select a wireless network to connect to."
+	f_dialog_title "Seleziona Network"
+	prompt="Seleziona una rete wireless a cui collegarsi."
 	f_dialog_menu_size height width rows "$DIALOG_TITLE" \
 		"$DIALOG_BACKTITLE" "$prompt" "" $menu_list
 	NETWORK=$( eval $DIALOG \
@@ -237,10 +237,10 @@ while :; do
 	$DIALOG_OK) break ;;
 	$DIALOG_CANCEL)
 		# Ask if the user wants to select network manually
-		f_dialog_title "Network Selection"
-		f_yesno "Do you want to select the network manually?" || exit 1
-		f_dialog_input NETWORK "Enter SSID" || exit 1
-		prompt="Select encryption type"
+		f_dialog_title "Seleziona Network"
+		f_yesno "Vuoi selezionare la rete manualmente?" || exit 1
+		f_dialog_input NETWORK "Inserisci SSID" || exit 1
+		prompt="Seleziona tipo di autenticazione"
 		menu_list="
 			'1 WPA/WPA2 PSK' ''
 			'2 WPA/WPA2 EAP' ''

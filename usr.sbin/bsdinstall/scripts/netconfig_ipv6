@@ -47,27 +47,27 @@ f_include $BSDCFG_SHARE/dialog.subr
 
 INTERFACE=$1
 case "${INTERFACE}" in
-"")	dialog --backtitle 'FreeBSD Installer' --title 'Network Configuration' \
-	    --msgbox 'No interface specified for IPv6 configuration.' 0 0
+"")	dialog --backtitle 'Installazione Firew4ll' --title 'Network Configuration' \
+	    --msgbox 'Nessuna interfaccia specificata per la configurazione IPv6.' 0 0
 	exit 1
 	;;
 esac
 
 AGAIN=""
 while : ; do
-	MSG="Would you like to try stateless address autoconfiguration (SLAAC)${AGAIN}?"
-	dialog --backtitle 'FreeBSD Installer' --title 'Network Configuration' \
+	MSG="Vorresti provare a configurare automaticamente (SLAAC)${AGAIN}?"
+	dialog --backtitle 'Installazione Firew4ll' --title 'Configurazione Network' \
 	    --yesno "${MSG}" 0 0
 	if [ $? -eq $DIALOG_OK ]; then
 		if [ ! -z $BSDINSTALL_CONFIGCURRENT ]; then
-			dialog --backtitle 'FreeBSD Installer' \
-			    --infobox "Sending Router Solicitation ..." 0 0
+			dialog --backtitle 'Installazione Firew4ll' \
+			    --infobox "Inviando sollecitazioni al Router..." 0 0
 			ifconfig ${INTERFACE} inet6 -ifdisabled accept_rtadv up
 			err=$( rtsol -F $INTERFACE 2>&1 )
 			if [ $? -ne 0 ]; then
 				f_dprintf "%s" "$err"
-				dialog --backtitle 'FreeBSD Installer' --msgbox "SLAAC failed." 0 0
-				AGAIN=" again"
+				dialog --backtitle 'Installazione Firew4ll' --msgbox "SLAAC fallito." 0 0
+				AGAIN=" ancora"
 				continue
 			fi
 		fi
@@ -106,9 +106,9 @@ END {
 }'`
 
 exec 3>&1
-IF_CONFIG=$(echo ${ADDRS} | xargs dialog --backtitle 'FreeBSD Installer' \
-	--title 'Network Configuration' \
-	--mixedform 'Static IPv6 Network Interface Configuration' 0 0 0 \
+IF_CONFIG=$(echo ${ADDRS} | xargs dialog --backtitle 'Installazione Firew4ll' \
+	--title 'Configurazione Network' \
+	--mixedform 'Configurazione Rete Interfaccia IPv6 Statica' 0 0 0 \
 2>&1 1>&3)
 if [ $? -eq $DIALOG_CANCEL ]; then exit 1; fi
 exec 3>&-

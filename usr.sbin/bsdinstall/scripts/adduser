@@ -27,8 +27,8 @@
 # $FreeBSD$
 
 clear
-echo "FreeBSD Installer"
+echo "Installazione Firew4ll"
 echo "========================"
-echo "Add Users"
+echo "Aggiungi utente"
 echo
 chroot $BSDINSTALL_CHROOT adduser 2>&1

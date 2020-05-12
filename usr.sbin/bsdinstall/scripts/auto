@@ -301,7 +301,7 @@ Shell \"Apri una shell e configura a mano\""
 CURARCH=$( uname -m )
 case $CURARCH in
 	amd64|arm64|i386)	# Booting ZFS Supported
-		PMODES="$PMODES \"Auto (ZFS)\" \"Guided Root-on-ZFS\""
+		PMODES="$PMODES \"Auto (ZFS)\" \"Root su ZFS Guidato\""
 		;;
 	*)		# Booting ZFS Unspported
 		;;

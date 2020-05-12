@@ -30,7 +30,7 @@ if [ ! "$_GEOM_SUBR" ]; then _GEOM_SUBR=1
 
 BSDCFG_SHARE="/usr/share/bsdconfig"
 . $BSDCFG_SHARE/common.subr || exit 1
-f_dprintf "%s: loading includes..." geom.subr
+f_dprintf "%s: caricando includes..." geom.subr
 f_include $BSDCFG_SHARE/strings.subr
 f_include $BSDCFG_SHARE/struct.subr
 
@@ -419,12 +419,12 @@ case "$GEOM_SELF_SCAN_ALL" in
 	if [ "$debug" ]; then
 		debug= f_geom_find "" "$GEOM_CLASS_ANY" geoms
 		f_count ngeoms $geoms
-		f_dprintf "%s: Initialized %u geom devices in %u classes." \
+		f_dprintf "%s: Inizializzando dispositivo geom %u in %u classes." \
 		          geom.subr "$ngeoms" "$NGEOM_CLASSES"
 		unset geoms ngeoms
 	fi
 esac
 
-f_dprintf "%s: Successfully loaded." geom.subr
+f_dprintf "%s: Caricato con successo." geom.subr
 
 fi # ! $_GEOM_SUBR

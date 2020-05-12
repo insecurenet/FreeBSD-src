@@ -30,7 +30,7 @@ if [ ! "$_VARIABLE_SUBR" ]; then _VARIABLE_SUBR=1
 
 BSDCFG_SHARE="/usr/share/bsdconfig"
 . $BSDCFG_SHARE/common.subr || exit 1
-f_dprintf "%s: loading includes..." variable.subr
+f_dprintf "%s: caricando includes..." variable.subr
 f_include $BSDCFG_SHARE/dialog.subr
 f_include $BSDCFG_SHARE/strings.subr
 
@@ -71,7 +71,7 @@ f_variable_new()
 {
 	local handle="$1" variable="$2"
 	[ "$handle" ] || return $FAILURE
-	f_dprintf "variable.subr: New variable %s -> %s" "$handle" "$variable"
+	f_dprintf "variable.subr: Nuova variabile %s -> %s" "$handle" "$variable"
 	setvar $handle $variable
 	VARIABLES="$VARIABLES${VARIABLES:+ }$handle"
 }
@@ -106,7 +106,7 @@ f_variable_get_value()
 #
 f_variable_set_defaults()
 {
-	f_dprintf "f_variable_set_defaults: Initializing defaults..."
+	f_dprintf "f_variable_set_defaults: Inizializzazione impostazioni predefinite..."
 
 	#
 	# Initialize various user-edittable values to their defaults
@@ -143,7 +143,7 @@ f_variable_set_defaults()
 		done
 	fi
 
-	f_dprintf "f_variable_set_defaults: Defaults initialized."
+	f_dprintf "f_variable_set_defaults: Impostazioni predefinite caricate."
 }
 
 # f_dump_variables
@@ -310,6 +310,6 @@ case "$VARIABLE_SELF_INITIALIZE" in
 *) f_variable_set_defaults
 esac
 
-f_dprintf "%s: Successfully loaded." variable.subr
+f_dprintf "%s: Caricato con successo." variable.subr
 
 fi # ! $_VARIABLE_SUBR

@@ -32,7 +32,7 @@
  
 BSDCFG_SHARE="/usr/share/bsdconfig"
 . $BSDCFG_SHARE/common.subr || exit 1
-f_dprintf "%s: loading includes..." "$0"
+f_dprintf "%s: caricando includes..." "$0"
 f_include $BSDCFG_SHARE/dialog.subr
 f_include $BSDCFG_SHARE/keymap.subr
 f_include $BSDCFG_SHARE/sysrc.subr
@@ -59,7 +59,7 @@ msg_continue_with_keymap="Continua con la keymap %s"
 msg_default="default"
 msg_error="Errore"
 msg_freebsd_installer="Installazione Firew4ll"
-msg_keymap_menu_text="Firew4ll utilizza il keymap di default \"US\"\. Altre keymap possono essere scelte di seguito."
+msg_keymap_menu_text="Firew4ll utilizza il keymap di default \"US\. Altre keymap possono essere scelte di seguito."
 msg_keymap_selection="Seleziona Keymap"
 msg_ok="OK"
 msg_select="Seleziona"

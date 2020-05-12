@@ -31,7 +31,7 @@
 
 BSDCFG_SHARE="/usr/share/bsdconfig"
 . $BSDCFG_SHARE/common.subr || exit 1
-f_dprintf "%s: loading includes..." "$0"
+f_dprintf "%s: caricando includes..." "$0"
 f_include $BSDCFG_SHARE/dialog.subr
 f_include $BSDCFG_SHARE/mustberoot.subr
 f_include $BSDCFG_SHARE/packages/packages.subr
@@ -50,31 +50,31 @@ f_include $BSDCFG_SHARE/packages/packages.subr
 #
 # Strings that should be moved to an i18n file and loaded with f_include_lang()
 #
-hline_arrows_space_tab_enter="Use arrows, SPACE, TAB or ENTER"
-msg_bndoc_desc="Bengali Documentation"
+hline_arrows_space_tab_enter="Usa frecce, SPAZIO, TAB o INVIO"
+msg_bndoc_desc="Bengali Documentazione"
 msg_cancel="Cancel"
-msg_dadoc_desc="Danish Documentation"
-msg_dedoc_desc="German Documentation"
-msg_docsinstall_menu_text="This menu allows you to install the whole documentation set from\nthe FreeBSD Documentation Project: Handbook, FAQ, and articles.\n\nPlease select the language versions you wish to install. At\nminimum, you should install the English version, the original\nversion of the documentation."
-msg_eldoc_desc="Greek Documentation"
-msg_endoc_desc="English Documentation (recommended)"
-msg_esdoc_desc="Spanish Documentation"
-msg_frdoc_desc="French Documentation"
-msg_freebsd_documentation_installation="FreeBSD Documentation Installation"
-msg_freebsd_installer="FreeBSD Installer"
-msg_hudoc_desc="Hungarian Documentation"
-msg_itdoc_desc="Italian Documentation"
-msg_jadoc_desc="Japanese Documentation"
-msg_mndoc_desc="Mongolian Documentation"
-msg_nldoc_desc="Dutch Documentation"
+msg_dadoc_desc="Danish Documentazione"
+msg_dedoc_desc="German Documentazione"
+msg_docsinstall_menu_text="Questo menu consente di installare l'intero set di documentazione dalla\n FreeBSD Documentation Project: Handbook, FAQ, e articoli.\n\nSeleziona le versioni linguistiche che desideri installare. Come\nminimo, è necessario installare la versione inglese, l'originale\nversione della documentazione."
+msg_eldoc_desc="Greek Documentazione"
+msg_endoc_desc="English Documentazione (raccomandato)"
+msg_esdoc_desc="Spanish Documentazione"
+msg_frdoc_desc="French Documentazione"
+msg_freebsd_documentation_installation="FreeBSD Documentazione Installation"
+msg_freebsd_installer="Installazione Firew4ll"
+msg_hudoc_desc="Hungarian Documentazione"
+msg_itdoc_desc="Italian Documentazione"
+msg_jadoc_desc="Japanese Documentazione"
+msg_mndoc_desc="Mongolian Documentazione"
+msg_nldoc_desc="Dutch Documentazione"
 msg_ok="OK"
-msg_pldoc_desc="Polish Documentation"
-msg_ptdoc_desc="Portuguese Documentation"
-msg_rudoc_desc="Russian Documentation"
-msg_srdoc_desc="Serbian Documentation"
-msg_trdoc_desc="Turkish Documentation"
-msg_zh_cndoc_desc="Simplified Chinese Documentation"
-msg_zh_twdoc_desc="Traditional Chinese Documentation"
+msg_pldoc_desc="Polish Documentazione"
+msg_ptdoc_desc="Portuguese Documentazione"
+msg_rudoc_desc="Russian Documentazione"
+msg_srdoc_desc="Serbian Documentazione"
+msg_trdoc_desc="Turkish Documentazione"
+msg_zh_cndoc_desc="Simplified Chinese Documentazione"
+msg_zh_twdoc_desc="Traditional Chinese Documentazione"
 
 ############################################################ FUNCTIONS
 

@@ -215,90 +215,90 @@ ZPOOL_SET='zpool set %s "%s"'
 #
 # Strings that should be moved to an i18n file and loaded with f_include_lang()
 #
-hline_alnum_arrows_punc_tab_enter="Use alnum, arrows, punctuation, TAB or ENTER"
-hline_arrows_space_tab_enter="Use arrows, SPACE, TAB or ENTER"
-hline_arrows_tab_enter="Press arrows, TAB or ENTER"
-msg_an_unknown_error_occurred="An unknown error occurred"
-msg_back="Back"
-msg_cancel="Cancel"
-msg_change_selection="Change Selection"
-msg_configure_options="Configure Options:"
+hline_alnum_arrows_punc_tab_enter="Usa caratteri alfanum, frecce, punteggiatura, TAB o INVIO"
+hline_arrows_space_tab_enter="Usa frecce, SPAZIO, TAB o INVIO"
+hline_arrows_tab_enter="Premi frecce, TAB o INVIO"
+msg_an_unknown_error_occurred="Si è verificato un errore sconosciuto"
+msg_back="Indietro"
+msg_cancel="Annulla"
+msg_change_selection="Cambio Selezione"
+msg_configure_options="Configura Opzioni:"
 msg_detailed_disk_info="gpart(8) show %s:\n%s\n\ncamcontrol(8) inquiry %s:\n%s\n\n\ncamcontrol(8) identify %s:\n%s\n"
 msg_disk_info="Disk Info"
-msg_disk_info_help="Get detailed information on disk device(s)"
-msg_disk_singular="disk"
-msg_disk_plural="disks"
-msg_encrypt_disks="Encrypt Disks?"
-msg_encrypt_disks_help="Use geli(8) to encrypt all data partitions"
-msg_error="Error"
-msg_force_4k_sectors="Force 4K Sectors?"
-msg_force_4k_sectors_help="Align partitions to 4K sector boundries and set vfs.zfs.min_auto_ashift=12"
+msg_disk_info_help="Ottieni informazioni dettagliate sul disco(s)"
+msg_disk_singular="disco"
+msg_disk_plural="dischi"
+msg_encrypt_disks="Cripta Dischi?"
+msg_encrypt_disks_help="Usa geli(8) per crittografare le partizioni dei dati"
+msg_error="Errore"
+msg_force_4k_sectors="Forzare Settori 4K?"
+msg_force_4k_sectors_help="Allinea partizioni dei settori 4K e impostali vfs.zfs.min_auto_ashift=12"
 msg_freebsd_installer="Installazione Firew4ll"
-msg_geli_password="Enter a strong passphrase, used to protect your encryption keys. You will be required to enter this passphrase each time the system is booted"
-msg_geli_setup="Initializing encryption on selected disks,\n this will take several seconds per disk"
-msg_install="Install"
-msg_install_desc="Proceed with Installation"
-msg_install_help="Create ZFS boot pool with displayed options"
-msg_invalid_boot_pool_size="Invalid boot pool size \`%s'"
-msg_invalid_disk_argument="Invalid disk argument \`%s'"
-msg_invalid_index_argument="Invalid index argument \`%s'"
-msg_invalid_swap_size="Invalid swap size \`%s'"
-msg_invalid_virtual_device_type="Invalid Virtual Device type \`%s'"
-msg_last_chance_are_you_sure="Last Chance! Are you sure you want to destroy\nthe current contents of the following disks:\n\n   %s"
-msg_last_chance_are_you_sure_color='\\ZrLast Chance!\\ZR Are you \\Z1sure\\Zn you want to \\Zr\\Z1destroy\\Zn\nthe current contents of the following disks:\n\n   %s'
+msg_geli_password="Immettere una passphrase efficace, utilizzata per proteggere le chiavi di crittografia. Ti verrà richiesto di inserire questa passphrase ogni volta che il sistema viene avviato"
+msg_geli_setup="Inizializzazione della crittografia sui dischi selezionati, questo richiederà diversi secondi per disco"
+msg_install="Installa"
+msg_install_desc="Procedere con l'Installazione"
+msg_install_help="Crea pool di avvio ZFS con le opzioni visualizzate"
+msg_invalid_boot_pool_size="Dimensione del pool di avvio non valida \`%s'"
+msg_invalid_disk_argument="Disco non valido \`%s'"
+msg_invalid_index_argument="Indice non valido \`%s'"
+msg_invalid_swap_size="Dimensione swap non valida \`%s'"
+msg_invalid_virtual_device_type="Tipo di dispositivo virtuale non valido \`%s'"
+msg_last_chance_are_you_sure="Ultima possibilità!Sei sicuro di voler distruggere\nil contenuto attuale dei seguenti dischi: \n\n   %s"
+msg_last_chance_are_you_sure_color='\\ZrUltima possibilità!\\ZR Sei \\Z1sicuro\\Zn di voler \\Zr\\Z1distruggere\\Zn\nil contenuto dei seguenti dischi:\n\n   %s'
 msg_mirror_desc="Mirror - n-Way Mirroring"
-msg_mirror_help="[2+ Disks] Mirroring provides the best performance, but the least storage"
-msg_missing_disk_arguments="missing disk arguments"
-msg_missing_one_or_more_scripted_disks="Missing one or more scripted disks!"
+msg_mirror_help="[2+ Dischi] Il mirroring offre le migliori prestazioni, ma meno spazio di archiviazione"
+msg_missing_disk_arguments="argomenti del disco mancanti"
+msg_missing_one_or_more_scripted_disks="Uno o più scripted disk mancanti!"
 msg_no="NO"
-msg_no_disks_present_to_configure="No disk(s) present to configure"
-msg_no_disks_selected="No disks selected."
-msg_not_enough_disks_selected="Not enough disks selected. (%u < %u minimum)"
+msg_no_disks_present_to_configure="Nessun disco da configurare"
+msg_no_disks_selected="Nessun disco selezionato."
+msg_not_enough_disks_selected="Non abbastanza dischi selezionati. (%u < %u minimo)"
 msg_null_disk_argument="NULL disk argument"
 msg_null_index_argument="NULL index argument"
 msg_null_poolname="NULL poolname"
-msg_odd_disk_selected="An even number of disks must be selected to create a RAID 1+0. (%u selected)"
+msg_odd_disk_selected="È necessario selezionare un numero pari di dischi per creare un RAID 1+0. (% u selezionato)"
 msg_ok="OK"
-msg_partition_scheme="Partition Scheme"
-msg_partition_scheme_help="Select partitioning scheme. GPT is recommended."
-msg_please_enter_a_name_for_your_zpool="Please enter a name for your zpool:"
-msg_please_enter_amount_of_swap_space="Please enter amount of swap space (SI-Unit suffixes\nrecommended; e.g., \`2g' for 2 Gigabytes):"
-msg_please_select_one_or_more_disks="Please select one or more disks to create a zpool:"
-msg_pool_name="Pool Name"
-msg_pool_name_cannot_be_empty="Pool name cannot be empty."
-msg_pool_name_help="Customize the name of the zpool to be created (Required)"
-msg_pool_type_disks="Pool Type/Disks:"
-msg_pool_type_disks_help="Choose type of ZFS Virtual Device and disks to use (Required)"
-msg_processing_selection="Processing selection..."
+msg_partition_scheme="Schema di Partizione"
+msg_partition_scheme_help="Selezionare Schema di Partizione. GPT è raccomandato."
+msg_please_enter_a_name_for_your_zpool="Inserisci un nome per il tuo zpool:"
+msg_please_enter_amount_of_swap_space="Inserisci la dimensione per lo swap (SI-Unit suffisso\nraccomandato; es., \`2g' per 2 Gigabytes):"
+msg_please_select_one_or_more_disks="Seleziona uno o più dischi per creare zpool:"
+msg_pool_name="Pool Nome"
+msg_pool_name_cannot_be_empty="Il nome del Pool non può essere vuoto."
+msg_pool_name_help="Personalizza il nome dello zpool da creare (obbligatorio)"
+msg_pool_type_disks="Pool Tipo/Dischi:"
+msg_pool_type_disks_help="Scegli il tipo di ZFS e i dischi da utilizzare (obbligatorio)"
+msg_processing_selection="Elaborando la selezione..."
 msg_raid10_desc="RAID 1+0 - n x 2-Way Mirrors"
-msg_raid10_help="[4+ Disks] Striped Mirrors provides the best performance, but the least storage"
-msg_raidz1_desc="RAID-Z1 - Single Redundant RAID"
-msg_raidz1_help="[3+ Disks] Withstand failure of 1 disk. Recommended for: 3, 5 or 9 disks"
-msg_raidz2_desc="RAID-Z2 - Double Redundant RAID"
-msg_raidz2_help="[4+ Disks] Withstand failure of 2 disks. Recommended for: 4, 6 or 10 disks"
-msg_raidz3_desc="RAID-Z3 - Triple Redundant RAID"
-msg_raidz3_help="[5+ Disks] Withstand failure of 3 disks. Recommended for: 5, 7 or 11 disks"
-msg_rescan_devices="Rescan Devices"
-msg_rescan_devices_help="Scan for device changes"
-msg_select="Select"
-msg_select_a_disk_device="Select a disk device"
-msg_select_virtual_device_type="Select Virtual Device type:"
-msg_stripe_desc="Stripe - No Redundancy"
-msg_stripe_help="[1+ Disks] Striping provides maximum storage but no redundancy"
-msg_swap_encrypt="Encrypt Swap?"
-msg_swap_encrypt_help="Encrypt swap partitions with temporary keys, discarded on reboot"
-msg_swap_invalid="The selected swap size (%s) is invalid. Enter a number optionally followed by units. Example: 2G"
+msg_raid10_help="[4+ Dischi] Striped Mirrors offrono migliori prestazioni, ma meno spazio di archiviazione"
+msg_raidz1_desc="RAID-Z1 - Singola Ridondanza RAID"
+msg_raidz1_help="[3+ Disks] Resiste a guasti di 1 disco. Consigliato per: 3, 5 o 9 dischi"
+msg_raidz2_desc="RAID-Z2 - Doppia Ridondanza RAID"
+msg_raidz2_help="[4+ Disks] Resiste a guasti di 2 dischi. Consigliato per: 4, 6 o 10 dischi"
+msg_raidz3_desc="RAID-Z3 - Tripla Ridondanza RAID"
+msg_raidz3_help="[5+ Disks] Resiste a guasti di 3 dischi. Consigliato per: 5, 7 o 11 dischi"
+msg_rescan_devices="Ricerca Dispositivi"
+msg_rescan_devices_help="Scan per cambio dispositivi"
+msg_select="Seleziona"
+msg_select_a_disk_device="Seleziona un disco"
+msg_select_virtual_device_type="Seleziona tipo di Virtual Device:"
+msg_stripe_desc="Stripe - No Ridondanza"
+msg_stripe_help="[1+ Disks] Lo striping offre il massimo spazio di archiviazione ma nessuna ridondanza"
+msg_swap_encrypt="Crittografa Swap?"
+msg_swap_encrypt_help="Crittografa la partizione di swap con chiavi temporanee, scartate al riavvio"
+msg_swap_invalid="La dimensione di scambio selezionata (%s) non è valida. Inserisci un numero seguito dall'unità. Esempio: 2G"
 msg_swap_mirror="Mirror Swap?"
-msg_swap_mirror_help="Mirror swap partitions for redundancy, breaks crash dumps"
-msg_swap_size="Swap Size"
-msg_swap_size_help="Customize how much swap space is allocated to each selected disk"
-msg_swap_toosmall="The selected swap size (%s) is to small. Please enter a value greater than 100MB or enter 0 for no swap"
-msg_these_disks_are_too_small="These disks are smaller than the amount of requested\nswap (%s) and/or geli(8) (%s) partitions, which would\ntake 100%% or more of each of the following selected disks:\n\n  %s\n\nRecommend changing partition size(s) and/or selecting a\ndifferent set of disks."
-msg_unable_to_get_disk_capacity="Unable to get disk capacity of \`%s'"
-msg_unsupported_partition_scheme="%s is an unsupported partition scheme"
-msg_user_cancelled="User Cancelled."
-msg_yes="YES"
-msg_zfs_configuration="ZFS Configuration"
+msg_swap_mirror_help="Mirror swap partizione per ridondanza, limita i crash dump"
+msg_swap_size="Dimensione Swap"
+msg_swap_size_help="Personalizza la quantità di spazio di swap assegnata a ciascun disco selezionato"
+msg_swap_toosmall="La dimensione di swap selezionata(%s)è troppo piccola. Inserisci un valore superiore a 100 MB o 0 per nessuna swap"
+msg_these_disks_are_too_small="Questi dischi sono inferiori alla quantità richiesta per lo\nswap (%s) e/o della partizione geli(8) (%s), che\nrichiederebbe il 100%% o più seguenti dischi selezionati:\n\n  %s\n\nSi consiglia di modificare le dimensioni della partizione e/o selezionare un\ndiverso set di dischi."
+msg_unable_to_get_disk_capacity="Impossibile ottenere la capacità del disco di \`%s'"
+msg_unsupported_partition_scheme="%s non è uno schema di partizione supportato"
+msg_user_cancelled="Annullato dall'Utente."
+msg_yes="SI"
+msg_zfs_configuration="Configurazione ZFS"
 
 ############################################################ FUNCTIONS
 
@@ -518,7 +518,7 @@ dialog_menu_layout()
 	fi
 
 	if [ ! "$disks" ]; then
-		f_dprintf "No disk(s) present to configure"
+		f_dprintf "Nessun disco presente da configurare"
 		f_show_err "$msg_no_disks_present_to_configure"
 		return $FAILURE
 	fi
@@ -581,7 +581,7 @@ dialog_menu_layout()
 				valid_disks="$valid_disks $disk"
 				continue
 			fi
-			f_dprintf "$funcname: \`%s' is not a real disk" "$disk"
+			f_dprintf "$funcname: \`%s' non è un disco reale" "$disk"
 			all_valid=
 		done
 		if [ ! "$all_valid" ]; then
@@ -589,7 +589,7 @@ dialog_menu_layout()
 				f_show_err \
 				    "$msg_missing_one_or_more_scripted_disks"
 			else
-				f_dprintf "No disks selected."
+				f_dprintf "Nessun disco selezionato."
 				f_interactive ||
 					f_show_err "$msg_no_disks_selected"
 			fi
@@ -607,7 +607,7 @@ dialog_menu_layout()
 			# Not enough disks selected
 			f_dprintf "$funcname: %s: %s (%u < %u minimum)" \
 				  "$ZFSBOOT_VDEV_TYPE" \
-			          "Not enough disks selected." \
+			          "Non abbastana dischi selezionati." \
 				  $ndisks $want_disks
 			f_interactive || return $FAILURE
 			msg_yes="$msg_change_selection" msg_no="$msg_cancel" \
@@ -678,7 +678,7 @@ dialog_menu_layout()
 			    [ $(( $ndisks % 2 )) -ne 0 ]; then
 				f_dprintf "$funcname: %s: %s (%u %% 2 = %u)" \
 					  "$ZFSBOOT_VDEV_TYPE" \
-					  "Number of disks not even:" \
+					  "Numero di dischi non pari:" \
 					  $ndisks $(( $ndisks % 2 ))
 				msg_yes="$msg_change_selection" \
 					msg_no="$msg_cancel" \
@@ -694,7 +694,7 @@ dialog_menu_layout()
 			# Not enough disks selected
 			f_dprintf "$funcname: %s: %s (%u < %u minimum)" \
 				  "$ZFSBOOT_VDEV_TYPE" \
-			          "Not enough disks selected." \
+			          "Non abbastanza dischi selezionati." \
 			          $ndisks $want_disks
 			msg_yes="$msg_change_selection" msg_no="$msg_cancel" \
 				f_yesno "%s: $msg_not_enough_disks_selected" \
@@ -754,7 +754,7 @@ zfs_create_diskpart()
 	case "$ZFSBOOT_PARTITION_SCHEME" in
 	""|MBR|GPT*) : known good ;;
 	*)
-		f_dprintf "$funcname: %s is an unsupported partition scheme" \
+		f_dprintf "$funcname: %s non è uno schema di partizione valido" \
 		          "$ZFSBOOT_PARTITION_SCHEME"
 		msg_error="$msg_error: $funcname" f_show_err \
 			"$msg_unsupported_partition_scheme" \
@@ -767,15 +767,15 @@ zfs_create_diskpart()
 	# NOTE: `-F' required to destroy if partitions still exist.
 	# NOTE: Failure is ok here, blank disk will have nothing to destroy.
 	#
-	f_dprintf "$funcname: Exporting ZFS pools..."
+	f_dprintf "$funcname: Esportando pool ZFS..."
 	zpool list -Ho name | while read z_name; do
 		f_eval_catch -d $funcname zpool "$ZPOOL_EXPORT_F" $z_name
 	done
-	f_dprintf "$funcname: Detaching all GELI providers..."
+	f_dprintf "$funcname: Staccando tutti i provider GELI..."
 	geli status | tail -n +2 | while read g_name g_status g_component; do
 		f_eval_catch -d $funcname geli "$GELI_DETACH_F" $g_name
 	done
-	f_dprintf "$funcname: Destroying all data/layouts on \`%s'..." "$disk"
+	f_dprintf "$funcname: Distruggendo tutti i dati/layout su \`%s'..." "$disk"
 	f_eval_catch -d $funcname gpart "$GPART_DESTROY_F" $disk
 	f_eval_catch -d $funcname graid "$GRAID_DELETE" $disk
 	f_eval_catch -d $funcname zpool "$ZPOOL_LABELCLEAR_F" /dev/$disk
@@ -802,7 +802,7 @@ zfs_create_diskpart()
 	fi
 
 	case "$ZFSBOOT_PARTITION_SCHEME" in
-	""|GPT*) f_dprintf "$funcname: Creating GPT layout..."
+	""|GPT*) f_dprintf "$funcname: Creando layout GPT..."
 		#
 		# 1. Create GPT layout using labels
 		#
@@ -919,7 +919,7 @@ zfs_create_diskpart()
 		                /dev/$disk$targetpart
 		;;
 
-	MBR) f_dprintf "$funcname: Creating MBR layout..."
+	MBR) f_dprintf "$funcname: Creando layout MBR..."
 		#
 		# Enable boot pool if encryption is desired
 		#
@@ -1075,7 +1075,7 @@ zfs_create_boot()
 	#
 	# Initialize fstab(5)
 	#
-	f_dprintf "$funcname: Initializing temporary fstab(5) file..."
+	f_dprintf "$funcname: Inizializzando temporaneamente fstab(5)..."
 	f_eval_catch $funcname sh "$SHELL_TRUNCATE" $BSDINSTALL_TMPETC/fstab ||
 	             return $FAILURE
 	f_eval_catch $funcname printf "$PRINTF_FSTAB" \
@@ -1085,16 +1085,16 @@ zfs_create_boot()
 	#
 	# Expand SI units in desired sizes
 	#
-	f_dprintf "$funcname: Expanding supplied size values..."
+	f_dprintf "$funcname: Espandendo secondo i valori forniti..."
 	local swapsize bootsize
 	if ! f_expand_number "$ZFSBOOT_SWAP_SIZE" swapsize; then
-		f_dprintf "$funcname: Invalid swap size \`%s'" \
+		f_dprintf "$funcname: Dimensione swap non valida \`%s'" \
 		          "$ZFSBOOT_SWAP_SIZE"
 		f_show_err "$msg_invalid_swap_size" "$ZFSBOOT_SWAP_SIZE"
 		return $FAILURE
 	fi
 	if ! f_expand_number "$ZFSBOOT_BOOT_POOL_SIZE" bootsize; then
-		f_dprintf "$funcname: Invalid boot pool size \`%s'" \
+		f_dprintf "$funcname: Dimensione pool di boot non valida \`%s'" \
 		          "$ZFSBOOT_BOOT_POOL_SIZE"
 		f_show_err "$msg_invalid_boot_pool_size" \
 		           "$ZFSBOOT_BOOT_POOL_SIZE"
@@ -1118,7 +1118,7 @@ zfs_create_boot()
 	#
 	# Prepare the disks and build pool device list(s)
 	#
-	f_dprintf "$funcname: Preparing disk partitions for ZFS pool..."
+	f_dprintf "$funcname: Preparazione delle partizioni del disco per il pool ZFS..."
 
 	# Force 4K sectors using vfs.zfs.min_auto_ashift=12
 	if [ "$ZFSBOOT_FORCE_4K_SECTORS" ]; then
@@ -1153,9 +1153,9 @@ zfs_create_boot()
 		local bootpool="$BSDINSTALL_CHROOT/$bootpool_name"
 		local zroot_key="${ZFSBOOT_GELI_KEY_FILE#/}"
 
-		f_dprintf "$funcname: Setting up boot pool..."
+		f_dprintf "$funcname: Impostazione del pool di avvio..."
 		[ "$ZFSBOOT_GELI_ENCRYPTION" ] &&
-			f_dprintf "$funcname: For encrypted root disk..."
+			f_dprintf "$funcname: Per disco root crittografato..."
 
 		# Create parent directory for boot pool
 		f_eval_catch -d $funcname umount "$UMOUNT" /mnt
@@ -1203,7 +1203,7 @@ zfs_create_boot()
 		if ! msg_enter_new_password="$msg_geli_password" \
 			f_dialog_input_password
 		then
-			f_dprintf "$funcname: User cancelled"
+			f_dprintf "$funcname: User cancellato"
 			f_show_err "$msg_user_cancelled"
 			return $FAILURE
 		fi
@@ -1277,7 +1277,7 @@ zfs_create_boot()
 	#
 	# Create the ZFS root pool with desired type and disk devices
 	#
-	f_dprintf "$funcname: Creating root pool..."
+	f_dprintf "$funcname: Creando root pool..."
 	create_options="$ZFSBOOT_POOL_CREATE_OPTIONS"
 	if [ "$zroot_vdevtype" == "raid10" ]; then
 		raid10_vdevs=""
@@ -1302,7 +1302,7 @@ zfs_create_boot()
 	#
 	# Create ZFS dataset layout within the new root pool
 	#
-	f_dprintf "$funcname: Creating ZFS datasets..."
+	f_dprintf "$funcname: Creando dataset ZFS..."
 	echo "$ZFSBOOT_DATASETS" | while read dataset options; do
 		# Skip blank lines and comments
 		case "$dataset" in "#"*|"") continue; esac
@@ -1328,13 +1328,13 @@ zfs_create_boot()
 	# Set a mountpoint for the root of the pool so newly created datasets
 	# have a mountpoint to inherit
 	#
-	f_dprintf "$funcname: Setting mountpoint for root of the pool..."
+	f_dprintf "$funcname: Impostazione mountpoint per root del pool..."
 	f_eval_catch $funcname zfs "$ZFS_SET" \
 		"mountpoint=/$zroot_name" "$zroot_name" ||
 		return $FAILURE
 
 	# Touch up permissions on the tmp directories
-	f_dprintf "$funcname: Modifying directory permissions..."
+	f_dprintf "$funcname: Modifica delle autorizzazioni della directory..."
 	local dir
 	for dir in /tmp /var/tmp; do
 		f_eval_catch $funcname mkdir "$MKDIR_P" \
@@ -1345,7 +1345,7 @@ zfs_create_boot()
 
 	# Set bootfs property
 	local zroot_bootfs="$ZFSBOOT_BEROOT_NAME/$ZFSBOOT_BOOTFS_NAME"
-	f_dprintf "$funcname: Setting bootfs property..."
+	f_dprintf "$funcname: Impostazione proprietà bootfs..."
 	f_eval_catch $funcname zpool "$ZPOOL_SET" \
 		"bootfs=\"$zroot_name/$zroot_bootfs\"" "$zroot_name" ||
 		return $FAILURE
@@ -1353,7 +1353,7 @@ zfs_create_boot()
 	# MBR boot loader touch-up
 	if [ "$ZFSBOOT_PARTITION_SCHEME" = "MBR" ]; then
 		# Export the pool(s)
-		f_dprintf "$funcname: Temporarily exporting ZFS pool(s)..."
+		f_dprintf "$funcname: Esportazione temporanea ZFS pool(s)..."
 		f_eval_catch $funcname zpool "$ZPOOL_EXPORT" "$zroot_name" ||
 			     return $FAILURE
 		if [ "$ZFSBOOT_BOOT_POOL" ]; then
@@ -1361,7 +1361,7 @@ zfs_create_boot()
 				     "$bootpool_name" || return $FAILURE
 		fi
 
-		f_dprintf "$funcname: Updating MBR boot loader on disks..."
+		f_dprintf "$funcname: Aggiornando boot loader MBR sui dischi..."
 		# Stick the ZFS boot loader in the "convenient hole" after
 		# the ZFS internal metadata
 		for disk in $disks; do
@@ -1409,15 +1409,15 @@ zfs_create_boot()
 	# Set canmount=noauto so that the default Boot Environment (BE) does not
 	# get mounted if a different BE is selected from the beastie menu
 	#
-	f_dprintf "$funcname: Set canmount=noauto for the root of the pool..."
+	f_dprintf "$funcname: Set canmount=noauto per il root del pool..."
 	f_eval_catch $funcname zfs "$ZFS_SET" "canmount=noauto" \
 		"$zroot_name/$ZFSBOOT_BEROOT_NAME/$ZFSBOOT_BOOTFS_NAME"
 
 	# Last, but not least... required lines for rc.conf(5)/loader.conf(5)
 	# NOTE: We later concatenate these into their destination
-	f_dprintf "%s: Configuring rc.conf(5)/loader.conf(5) additions..." \
+	f_dprintf "%s: Configurando rc.conf(5)/loader.conf(5) aggiunte..." \
 	          "$funcname"
-	f_eval_catch $funcname echo "$ECHO_APPEND" 'zfs_enable=\"YES\"' \
+	f_eval_catch $funcname echo "$ECHO_APPEND" 'zfs_enable=\"SI\"' \
 	             $BSDINSTALL_TMPETC/rc.conf.zfs || return $FAILURE
 	f_eval_catch $funcname echo "$ECHO_APPEND" \
 	             'kern.geom.label.disk_ident.enable=\"0\"' \
@@ -1434,7 +1434,7 @@ zfs_create_boot()
 
 	if [ "$ZFSBOOT_SWAP_MIRROR" ]; then
 		f_eval_catch $funcname echo "$ECHO_APPEND" \
-		             'geom_mirror_load=\"YES\"' \
+		             'geom_mirror_load=\"SI\"' \
 		             $BSDINSTALL_TMPBOOT/loader.conf.gmirror ||
 		             return $FAILURE
 	fi
@@ -1445,10 +1445,10 @@ zfs_create_boot()
 	#
 	# Configure geli(8)-based encryption
 	#
-	f_dprintf "$funcname: Configuring disk encryption..."
-	f_eval_catch $funcname echo "$ECHO_APPEND" 'aesni_load=\"YES\"' \
+	f_dprintf "$funcname: Configurazione della crittografia del disco..."
+	f_eval_catch $funcname echo "$ECHO_APPEND" 'aesni_load=\"SI\"' \
 		$BSDINSTALL_TMPBOOT/loader.conf.aesni || return $FAILURE
-	f_eval_catch $funcname echo "$ECHO_APPEND" 'geom_eli_load=\"YES\"' \
+	f_eval_catch $funcname echo "$ECHO_APPEND" 'geom_eli_load=\"SI\"' \
 		$BSDINSTALL_TMPBOOT/loader.conf.geli || return $FAILURE
 
 	# We're all done unless we should go on for boot pool
@@ -1472,17 +1472,17 @@ zfs_create_boot()
 	done
 
 	# Set cachefile for boot pool so it auto-imports at system start
-	f_dprintf "$funcname: Configuring zpool.cache for boot pool..."
+	f_dprintf "$funcname: Configurazione di zpool.cache per il pool di avvio..."
 	f_eval_catch $funcname zpool "$ZPOOL_SET" \
 	             "cachefile=\"$BSDINSTALL_CHROOT/boot/zfs/zpool.cache\"" \
 	             "$bootpool_name" || return $FAILURE
 
 	# Some additional geli(8) requirements for loader.conf(5)
 	for option in \
-		'zpool_cache_load=\"YES\"' \
+		'zpool_cache_load=\"SI\"' \
 		'zpool_cache_type=\"/boot/zfs/zpool.cache\"' \
 		'zpool_cache_name=\"/boot/zfs/zpool.cache\"' \
-		'geom_eli_passphrase_prompt=\"YES\"' \
+		'geom_eli_passphrase_prompt=\"SI\"' \
 	; do
 		f_eval_catch $funcname echo "$ECHO_APPEND" "$option" \
 		             $BSDINSTALL_TMPBOOT/loader.conf.zfs ||
