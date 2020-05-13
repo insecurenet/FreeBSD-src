@@ -127,9 +127,9 @@ CaseFile::Find(const string &physPath)
 			continue;
 
 		if (result != NULL) {
-			syslog(LOG_WARNING, "Multiple casefiles found for "
-			    "physical path %s.  "
-			    "This is most likely a bug in zfsd",
+			syslog(LOG_WARNING, "Multipli casefiles trovati per "
+			    "percorsi fisici %s.  "
+			    "Questo potrebbe essere un bung in zfsd",
 			    physPath.c_str());
 		}
 		result = *curCase;
@@ -304,8 +304,8 @@ CaseFile::ReEvaluate(const string &devPath, const string &physPath, Vdev *vdev)
 	 */
 	if (zpool_get_prop_int(pool, ZPOOL_PROP_AUTOREPLACE, NULL) == 0) {
 		syslog(LOG_INFO,
-		       "CaseFile(%s:%s:%s): AutoReplace not set.  "
-		       "Ignoring device insertion.\n",
+		       "CaseFile(%s:%s:%s): AutoReplace non settato.  "
+		       "Ignorando l'inserimento del dispositivo.\n",
 		       PoolGUIDString().c_str(),
 		       VdevGUIDString().c_str(),
 		       zpool_state_to_name(VdevState(), VDEV_AUX_NONE));
@@ -314,8 +314,8 @@ CaseFile::ReEvaluate(const string &devPath, const string &physPath, Vdev *vdev)
 
 	if (PhysicalPath().empty()) {
 		syslog(LOG_INFO,
-		       "CaseFile(%s:%s:%s): No physical path information.  "
-		       "Ignoring device insertion.\n",
+		       "CaseFile(%s:%s:%s): Nessuna informazione sul percorso fisico.  "
+		       "Ignorando l'inserimento del dispositivo.\n",
 		       PoolGUIDString().c_str(),
 		       VdevGUIDString().c_str(),
 		       zpool_state_to_name(VdevState(), VDEV_AUX_NONE));
@@ -324,8 +324,8 @@ CaseFile::ReEvaluate(const string &devPath, const string &physPath, Vdev *vdev)
 
 	if (physPath != PhysicalPath()) {
 		syslog(LOG_INFO,
-		       "CaseFile(%s:%s:%s): Physical path mismatch.  "
-		       "Ignoring device insertion.\n",
+		       "CaseFile(%s:%s:%s): No corrispondenza percorso fisico.  "
+		       "Ignorando l'inserimento del dispositivo.\n",
 		       PoolGUIDString().c_str(),
 		       VdevGUIDString().c_str(),
 		       zpool_state_to_name(VdevState(), VDEV_AUX_NONE));
@@ -341,14 +341,14 @@ CaseFile::ReEvaluate(const string &devPath, const string &physPath, Vdev *vdev)
 	if (zpool_label_disk(g_zfsHandle, pool, devPath.c_str(),
 	    boot_type, boot_size, NULL) != 0) {
 		syslog(LOG_ERR,
-		       "Replace vdev(%s/%s) by physical path (label): %s: %s\n",
+		       "Sostituisci vdev(%s/%s) da un indirizzo fisico (label): %s: %s\n",
 		       zpool_get_name(pool), VdevGUIDString().c_str(),
 		       libzfs_error_action(g_zfsHandle),
 		       libzfs_error_description(g_zfsHandle));
 		return (/*consumed*/false);
 	}
 
-	syslog(LOG_INFO, "CaseFile::ReEvaluate(%s/%s): Replacing with %s",
+	syslog(LOG_INFO, "CaseFile::ReEvaluate(%s/%s): Sostituzione con %s",
 	    PoolGUIDString().c_str(), VdevGUIDString().c_str(),
 	    devPath.c_str());
 	return (Replace(VDEV_TYPE_DISK, devPath.c_str(), /*isspare*/false));
@@ -392,7 +392,7 @@ CaseFile::ReEvaluate(const ZfsEvent &event)
 			 */
 			syslog(LOG_INFO,
 			       "CaseFile::ReEvaluate(%s,%s) Pool/Vdev "
-			       "unconfigured.  Closing\n",
+			       "non configurata.  Chiudendo\n",
 			       PoolGUIDString().c_str(),
 			       VdevGUIDString().c_str());
 			/*
@@ -519,7 +519,7 @@ CaseFile::ActivateSpare() {
 	if (parent_config != NULL) {
 		char *parent_type;
 
-		/*
+		/* 
 		 * Don't activate spares for members of a "replacing" vdev.
 		 * They're already dealt with.  Sparing them will just drag out
 		 * the resilver process.
@@ -1096,8 +1096,8 @@ CaseFile::Replace(const char* vdev_type, const char* path, bool isspare) {
 
 	if (nvlist_alloc(&nvroot, NV_UNIQUE_NAME, 0) != 0
 	 || nvlist_alloc(&newvd, NV_UNIQUE_NAME, 0) != 0) {
-		syslog(LOG_ERR, "Replace vdev(%s/%s): Unable to allocate "
-		    "configuration data.", poolname, oldstr.c_str());
+		syslog(LOG_ERR, "Sostituire vdev(%s/%s): Impossibile allocare "
+		    "dati di configurazione.", poolname, oldstr.c_str());
 		if (nvroot != NULL)
 			nvlist_free(nvroot);
 		return (false);
@@ -1107,8 +1107,8 @@ CaseFile::Replace(const char* vdev_type, const char* path, bool isspare) {
 	 || nvlist_add_string(nvroot, ZPOOL_CONFIG_TYPE, VDEV_TYPE_ROOT) != 0
 	 || nvlist_add_nvlist_array(nvroot, ZPOOL_CONFIG_CHILDREN,
 				    &newvd, 1) != 0) {
-		syslog(LOG_ERR, "Replace vdev(%s/%s): Unable to initialize "
-		    "configuration data.", poolname, oldstr.c_str());
+		syslog(LOG_ERR, "Sostituire vdev(%s/%s): Impossibile inizializzare "
+		    "dati di configurazione.", poolname, oldstr.c_str());
 		nvlist_free(newvd);
 		nvlist_free(nvroot);
 		return (true);
@@ -1120,10 +1120,10 @@ CaseFile::Replace(const char* vdev_type, const char* path, bool isspare) {
 	retval = (zpool_vdev_attach(zhp, oldstr.c_str(), path, nvroot,
 	    /*replace*/B_TRUE) == 0);
 	if (retval)
-		syslog(LOG_INFO, "Replacing vdev(%s/%s) with %s\n",
+		syslog(LOG_INFO, "Sostituendo vdev(%s/%s) con %s\n",
 		    poolname, oldstr.c_str(), path);
 	else
-		syslog(LOG_ERR, "Replace vdev(%s/%s): %s: %s\n",
+		syslog(LOG_ERR, "Sostituire vdev(%s/%s): %s: %s\n",
 		    poolname, oldstr.c_str(), libzfs_error_action(g_zfsHandle),
 		    libzfs_error_description(g_zfsHandle));
 	nvlist_free(nvroot);
