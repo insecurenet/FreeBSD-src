@@ -490,7 +490,7 @@ gpart_destroy(struct ggeom *lg_geom)
 	gctl_ro_param(r, "arg0", -1, lg_geom->lg_name);
 	gctl_ro_param(r, "flags", -1, GPART_FLAGS);
 	gctl_ro_param(r, "force", sizeof(force), &force);
-	gctl_ro_param(r, "verb", -1, "distruggi");
+	gctl_ro_param(r, "verb", -1, "destroy");
 	errstr = gctl_issue(r);
 	if (errstr != NULL && errstr[0] != '\0') {
 		/*
@@ -1302,7 +1302,7 @@ gpart_revert_all(struct gmesh *mesh)
 		modified = "true"; /* XXX: If we don't know (kernel too old),
 				    * assume there are modifications. */
 		LIST_FOREACH(gc, &gp->lg_config, lg_config) {
-			if (strcmp(gc->lg_name, "modicato") == 0) {
+			if (strcmp(gc->lg_name, "modified") == 0) {
 				modified = gc->lg_val;
 				break;
 			}
