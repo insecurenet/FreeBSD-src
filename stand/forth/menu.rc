@@ -66,7 +66,7 @@ set mainmenu_keycode[5]=107
 set mainmenu_caption[6]="Configura [O]pzioni Boot..."
 set mainmenu_command[6]="2 goto_menu"
 set mainmenu_keycode[6]=111
-set mainansi_caption[6]="Configure ^[1mO^[mpzioni Boot..."
+set mainansi_caption[6]="Configura ^[1mO^[mpzioni Boot..."
 
 s" currdev" getenv dup 0> [if] drop 4 s" zfs:" compare 0= [if]
     set mainmenu_caption[7]="Selezionare [E]nvironment Boot..."
