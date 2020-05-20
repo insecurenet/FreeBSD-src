@@ -82,7 +82,7 @@ main(void)
 		snprintf(error, sizeof(error),
 		    "Could not change to directory %s: %s\n",
 		    getenv("BSDINSTALL_DISTDIR"), strerror(errno));
-		dialog_msgbox("Error", error, 0, 0, TRUE);
+		dialog_msgbox("Errore", error, 0, 0, TRUE);
 		end_dialog();
 		return (EXIT_FAILURE);
 	}
@@ -151,7 +151,7 @@ fetch_files(int nfiles, char **urls)
 		fetch_out = fetchXGetURL(urls[i], &ustat, "");
 		if (fetch_out == NULL) {
 			snprintf(errormsg, sizeof(errormsg),
-			    "Error while fetching %s: %s\n", urls[i],
+			    "Errore durante il recupero %s: %s\n", urls[i],
 			    fetchLastErrString);
 			items[i*2 + 1] = "Failed";
 			dialog_msgbox("Fetch Error", errormsg, 0, 0,
@@ -164,7 +164,7 @@ fetch_files(int nfiles, char **urls)
 		file_out = fopen(items[i*2], "w+");
 		if (file_out == NULL) {
 			snprintf(errormsg, sizeof(errormsg),
-			    "Error while fetching %s: %s\n",
+			    "Errore durante il recupero %s: %s\n",
 			    urls[i], strerror(errno));
 			items[i*2 + 1] = "Failed";
 			dialog_msgbox("Fetch Error", errormsg, 0, 0,
@@ -193,8 +193,8 @@ fetch_files(int nfiles, char **urls)
 			}
 
 			if (progress > last_progress)
-				dialog_mixedgauge("Fetching Distribution",
-				    "Fetching distribution files...", 0, 0,
+				dialog_mixedgauge("Recupero distribuzione",
+				    "Recupero file di distribuzione...", 0, 0,
 				    progress, nfiles,
 				    __DECONST(char **, items));
 		}
@@ -202,14 +202,14 @@ fetch_files(int nfiles, char **urls)
 		if (ustat.size > 0 && fsize < ustat.size) {
 			if (fetchLastErrCode == 0) 
 				snprintf(errormsg, sizeof(errormsg),
-				    "Error while fetching %s: %s\n",
+				    "Errore durante il recupero %s: %s\n",
 				    urls[i], strerror(errno));
 			else
 				snprintf(errormsg, sizeof(errormsg),
-				    "Error while fetching %s: %s\n",
+				    "Errore durante il recupero %s: %s\n",
 				    urls[i], fetchLastErrString);
 			items[i*2 + 1] = "Fallito";
-			dialog_msgbox("Fetch Error", errormsg, 0, 0,
+			dialog_msgbox("Fetch Errore", errormsg, 0, 0,
 				    TRUE);
 		} else {
 			items[i*2 + 1] = "Fatto";
