@@ -84,7 +84,7 @@ trap error EXIT
 SCRIPT="$1"
 shift
 
-f_dprintf "Began Installation at %s" "$( date )"
+f_dprintf "Inizio installazione il %s" "$( date )"
 rm -rf $BSDINSTALL_TMPETC
 mkdir $BSDINSTALL_TMPETC
 
@@ -99,7 +99,7 @@ if [ "$BSDINSTALL_LOG" != "${debugFile#+}" ]; then
 	export debugFile="$BSDINSTALL_LOG"
 	f_quietly f_debug_init
 	# NB: Being scripted, let debug go to terminal for invalid debugFile
-	f_dprintf "Began Instalation at %s" "$( date )"
+	f_dprintf "Inizio installazione il %s" "$( date )"
 fi
 
 # Make partitions
@@ -115,7 +115,7 @@ fi
 # Unpack distributions
 bsdinstall checksum
 for set in $DISTRIBUTIONS; do
-	f_dprintf "Extracting $BSDINSTALL_DISTDIR/$set"
+	f_dprintf "Estraendo $BSDINSTALL_DISTDIR/$set"
 	tar -xf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT
 done
 
@@ -144,7 +144,7 @@ else
 	bsdinstall umount
 fi
 
-f_dprintf "Installation Completed at %s" "$( date )"
+f_dprintf "Installazione completata il %s" "$( date )"
 
 trap - EXIT
 exit $SUCCESS
