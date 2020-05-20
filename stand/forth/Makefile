@@ -33,9 +33,9 @@ FILES+=	shortcuts.4th
 FILES+=	support.4th
 FILES+=	version.4th
 
-# pfSense
-FILES+=	logo-pfSensebw.4th
-FILES+=	brand-pfSense.4th
+# Firew4ll
+FILES+=	logo-Firew4llbw.4th
+FILES+=	brand-Firew4ll.4th
 
 # Allow machine specific loader.rc to be installed.
 .for f in loader.rc menu.rc
