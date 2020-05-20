@@ -439,7 +439,7 @@ dialog_last_chance()
 	[ "$USE_XDIALOG" ] && height=$(( $height + $height / 5 + 3 ))
 
 	prompt=$( printf "$format" "$list" )
-	f_dprintf "%s: Last Chance!" "$0"
+	f_dprintf "%s:Ultimo avviso!" "$0"
 	$DIALOG \
 		--title "$title"        \
 		--backtitle "$btitle"   \
