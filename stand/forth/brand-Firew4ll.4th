@@ -34,13 +34,13 @@
 
 : brand ( x y -- ) \ "Firew4ll" [wide] logo in B/W (7 rows x 42 columns)
 
-	s"
-	s" ### #                      #   #    #     " brand+
-	s"#       ### ##### #  #  #  #  # #    #     " brand+
-	s"#    # #    #   # #  #  # #   # #    #     " brand+
-	s"#### # #    ##### #  #  #  #### #    #     " brand+
-	s"#    # #    #     #  #  #     # #    #     " brand+
-	s"#    # #     ###  ######      #  ###  ###  " brand+
+	s"                                         " brand+	
+	s" ___  _                    __   _    _   " brand+
+	s"| __><_> _ _  ___  _ _ _  /. | | |  | |  " brand+
+	s"| _> | || '_>/ ._>| | | |/_  .|| |_ | |_ " brand+
+	s"|_|  |_||_|  \___.|__/_/   |_| |___||___|" brand+
+	s"                                         " brand+
+	s"                                         " brand+
 	
 	2drop
 ;
