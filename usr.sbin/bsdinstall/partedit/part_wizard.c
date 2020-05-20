@@ -166,7 +166,7 @@ boot_disk(struct gmesh *mesh)
 	}
 
 	if (n > 1) {
-		err = dlg_menu("Partizionando",
+		err = dlg_menu("Partizionamento",
 		    "Seleziona il disco dove installerai Firew4ll.", 0, 0, 0,
 		    n, disks, &selected, NULL);
 
