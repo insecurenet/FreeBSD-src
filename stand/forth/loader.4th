@@ -52,7 +52,7 @@ only forth definitions
 : bootmsg ( -- )
   loader_color? dup ( -- bool bool )
   if 7 fg 4 bg then
-  ." Booting..."
+  ." Booting...il sistema sta partendo! "
   if me then
   cr
 ;

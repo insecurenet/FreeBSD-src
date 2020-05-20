@@ -918,7 +918,7 @@ command_reboot(int argc, char *argv[])
 		if (devsw[i]->dv_cleanup != NULL)
 			(devsw[i]->dv_cleanup)();
 
-	printf("Rebooting...\n");
+	printf("Riavviando...\n");
 	OF_exit();
 }
 

@@ -48,7 +48,7 @@ panic_action(void)
 {
 	printf("--> Press a key on the console to reboot <--\n");
 	getchar();
-	printf("Rebooting...\n");
+	printf("Riavviando...\n");
 	exit(1);
 }
 
