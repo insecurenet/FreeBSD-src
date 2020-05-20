@@ -187,7 +187,7 @@ mydraw_mixed_box(WINDOW *win, int y, int x, int height, int width,
     dlg_draw_box(win, y, x, height, width, boxchar, borderchar);
     {
 	chtype attr = A_NORMAL;
-	const char *message = _("Overall Progress");
+	const char *message = _("Avanzamento generale");
 	chtype save2 = dlg_get_attrs(win);
 	(void) wattrset(win, title_attr);
 	(void) wmove(win, y, x + 2);
