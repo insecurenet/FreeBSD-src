@@ -346,7 +346,7 @@ case "$PARTMODE" in
 	bsdinstall mount || error "Impossibile montare il filesystem"
 	;;
 *)
-	error "Modo di partizione sconosciuto"
+	error "Schema di partizione sconosciuto"
 	;;
 esac
 

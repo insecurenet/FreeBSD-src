@@ -29,11 +29,11 @@ menu-init     \ initialize the menu area (see `menu.4th')
 set menuset_name1="main"
 
 set mainmenu_init[1]="init_boot"
-set mainmenu_caption[1]="Boot Multi Utente [Enter]"
-set maintoggled_text[1]="Boot [S]ingolo Utente [Enter]"
+set mainmenu_caption[1]="Boot Multi Utente [Invio]"
+set maintoggled_text[1]="Boot [S]ingolo Utente [Invio]"
 set mainmenu_command[1]="boot"
-set mainansi_caption[1]="^[1mB^[moot Multi Utente ^[1m[Enter]^[m"
-set maintoggled_ansi[1]="Boot ^[1mS^[mingolo Utente ^[1m[Enter]^[m"
+set mainansi_caption[1]="^[1mB^[moot Multi Utente ^[1m[Invio]^[m"
+set maintoggled_ansi[1]="Boot ^[1mS^[mingolo Utente ^[1m[Invio]^[m"
 \ keycode set by init_boot
 
 set mainmenu_init[2]="init_altboot"
