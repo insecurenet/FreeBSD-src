@@ -1180,7 +1180,7 @@ fprintlog(struct filed *f, int flags, const char *msg)
 		 * With f_lasttime, time is synchronized correctly.
 		 */
 		v->iov_len = snprintf(greetings, sizeof greetings,
-		    "\r\n\7Message from syslogd@%s at %.24s ...\r\n",
+		    "\r\n\7Messaggio da syslogd@%s il %.24s ...\r\n",
 		    f->f_prevhost, f->f_lasttime);
 		if (v->iov_len >= sizeof greetings)
 			v->iov_len = sizeof greetings - 1;
