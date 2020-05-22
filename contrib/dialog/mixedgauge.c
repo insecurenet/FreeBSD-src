@@ -55,28 +55,28 @@ status_string(char *given, char **freeMe)
     if (isdigit(UCH(*given))) {
 	switch (*given) {
 	case '0':
-	    result = _("Succeeded");
+	    result = _("Successo");
 	    break;
 	case '1':
-	    result = _("Failed");
+	    result = _("Fallito");
 	    break;
 	case '2':
-	    result = _("Passed");
+	    result = _("Superato");
 	    break;
 	case '3':
-	    result = _("Completed");
+	    result = _("Completato");
 	    break;
 	case '4':
-	    result = _("Checked");
+	    result = _("Controllato");
 	    break;
 	case '5':
-	    result = _("Done");
+	    result = _("Fatto");
 	    break;
 	case '6':
-	    result = _("Skipped");
+	    result = _("Saltato");
 	    break;
 	case '7':
-	    result = _("In Progress");
+	    result = _("In corso");
 	    break;
 	case '8':
 	    result = "";
