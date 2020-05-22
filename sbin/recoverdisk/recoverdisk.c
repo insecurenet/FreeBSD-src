@@ -317,6 +317,6 @@ main(int argc, char * const argv[])
 	}
 	PRINT_STATUS(start, i, len, state, d, t);
 	save_worklist();
-	printf("\nCompleted\n");
+	printf("\nCompletato\n");
 	return (0);
 }
