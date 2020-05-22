@@ -245,7 +245,7 @@ msg_invalid_index_argument="Invalid index argument \`%s'"
 msg_invalid_swap_size="Invalid swap size \`%s'"
 msg_invalid_virtual_device_type="Invalid Virtual Device type \`%s'"
 msg_last_chance_are_you_sure="Ultimo avviso! Sei sicuro di voler distruggere \ntutti i contenuti del seguente disco:\n\n   %s"
-msg_last_chance_are_you_sure_color='\\ZrUltimo avviso!\\ZR Sei \\Z1sicuro\\Zn che vuoi \\Zr\\Z1distruggere\\Zn\ntutti i contenuti del seguente disco:\n\n   %s'
+msg_last_chance_are_you_sure_color='\\ZrUltimo avviso!\\ZR Sei \\Z1sicuro\\Zn di \\Zr\\Z1distruggere\\Zn\ntutti i contenuti del seguente disco:\n\n   %s'
 msg_mirror_desc="Mirror - n-Way Mirroring"
 msg_mirror_help="[2+ Dischi] Il mirroring fornisce migliori prestazioni, ma meno spazio"
 msg_missing_disk_arguments="missing disk arguments"
@@ -297,7 +297,7 @@ msg_these_disks_are_too_small="These disks are smaller than the amount of reques
 msg_unable_to_get_disk_capacity="Unable to get disk capacity of \`%s'"
 msg_unsupported_partition_scheme="%s is an unsupported partition scheme"
 msg_user_cancelled="User Cancelled."
-msg_yes="YES"
+msg_yes="SI"
 msg_zfs_configuration="ZFS Configuration"
 
 ############################################################ FUNCTIONS
