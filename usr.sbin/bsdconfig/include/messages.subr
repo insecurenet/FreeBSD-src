@@ -462,4 +462,4 @@ tcplayout_gateway_help="IPv4 indirizzo di inoltro pacchetti verso destinazioni n
 tcplayout_hostname_help="Il tuo hostname completo (FQDN) es. foo.example.com"
 tcplayout_ipaddr_help="L'indirizzo IPv4 che deve usato per questa interfaccia"
 tcplayout_nameserver_help="IPv4 o IPv6 indirizzo del tuo server DNS locale"
-tcplayout_netmask_help="La netmask per questa interfaccia, es. 255.255.255.0 per un network di classe C"
+tcplayout_netmask_help="La netmask per questa interfaccia, es. 255.255.255.0, per un network di classe C"
