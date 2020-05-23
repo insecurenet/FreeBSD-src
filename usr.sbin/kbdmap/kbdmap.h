@@ -29,7 +29,7 @@
  */
 
 
-#define DEFAULT_LANG		"it"
+#define DEFAULT_LANG		"en"
 #define DEFAULT_SYSCONFIG	"/etc/rc.conf"
 
 #define DEFAULT_SC_KEYMAP_DIR	"/usr/share/syscons/keymaps"
