@@ -217,9 +217,9 @@ poweroff:
 	mbuflen = strlen(mbuf);
 
 	if (offset)
-		(void)printf("Shutdown at %.24s.\n", ctime(&shuttime));
+		(void)printf("Spegminento alle %.24s.\n", ctime(&shuttime));
 	else
-		(void)printf("Shutdown NOW!\n");
+		(void)printf("Arresto ORA!\n");
 
 	if (!(whom = getlogin()))
 		whom = (pw = getpwuid(getuid())) ? pw->pw_name : "???";
@@ -313,20 +313,20 @@ timewarn(int timeleft)
 	}
 
 	(void)fprintf(pf,
-	    "\007*** %sSystem shutdown message from %s@%s ***\007\n",
+	    "\007*** %sMessaggio di arresto del sistema da %s@%s ***\007\n",
 	    timeleft ? "": "FINAL ", whom, hostname);
 
 	if (timeleft > 10*60)
-		(void)fprintf(pf, "System going down at %5.5s\n\n",
+		(void)fprintf(pf, "Sistema arrestato il %5.5s\n\n",
 		    ctime(&shuttime) + 11);
 	else if (timeleft > 59)
-		(void)fprintf(pf, "System going down in %d minute%s\n\n",
+		(void)fprintf(pf, "Sistema arrestato in %d minuti%s\n\n",
 		    timeleft / 60, (timeleft > 60) ? "s" : "");
 	else if (timeleft)
-		(void)fprintf(pf, "System going down in %s30 seconds\n\n",
+		(void)fprintf(pf, "Sistema arrestato in %s30 secondi\n\n",
 		    (offset > 0 && offset < 30 ? "less than " : ""));
 	else
-		(void)fprintf(pf, "System going down IMMEDIATELY\n\n");
+		(void)fprintf(pf, "Il sistema si arresterà IMMEDIATAMENTE\n\n");
 
 	if (mbuflen)
 		(void)fwrite(mbuf, sizeof(*mbuf), mbuflen, pf);
@@ -359,9 +359,9 @@ die_you_gravy_sucking_pig_dog(void)
 	    doreboot ? "reboot" : dohalt ? "halt" : dopower ? "power-down" : 
 	    "shutdown", whom, mbuf);
 
-	(void)printf("\r\nSystem shutdown time has arrived\007\007\r\n");
+	(void)printf("\r\nÈ arrivato il tempo di arresto del sistema\007\007\r\n");
 	if (killflg) {
-		(void)printf("\rbut you'll have to do it yourself\r\n");
+		(void)printf("\rma dovrai farlo da solo\r\n");
 		exit(0);
 	}
 #ifdef DEBUG
