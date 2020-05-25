@@ -313,7 +313,7 @@ timewarn(int timeleft)
 	}
 
 	(void)fprintf(pf,
-	    "\007*** %sMessaggio di arresto del sistema da %s@%s ***\007\n",
+	    "\007*** %sil Sistema si sta arrestando, messaggio da %s@%s ***\007\n",
 	    timeleft ? "": "FINAL ", whom, hostname);
 
 	if (timeleft > 10*60)
