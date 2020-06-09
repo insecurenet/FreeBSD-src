@@ -25,7 +25,7 @@
 # $FreeBSD$
 
 hline_alnum_punc_tab_enter="Use alpha-numeric, punctuation, TAB or ENTER"
-msg_cancel="Cancel"
+msg_cancel="Annulla"
 msg_enter_new_password="Enter New Password"
 msg_ok="OK"
 msg_password_changed="Password successfully changed."

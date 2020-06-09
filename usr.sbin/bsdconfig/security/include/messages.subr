@@ -26,7 +26,7 @@
 
 hline_arrows_tab_enter="Press arrows, TAB or ENTER"
 hline_select_securelevel_to_operate_at="Select a securelevel to operate at"
-msg_cancel="Cancel"
+msg_cancel="Annulla"
 msg_disable_securelevels="Disable securelevels"
 msg_disabled="Disabled"
 msg_exit="Exit"
